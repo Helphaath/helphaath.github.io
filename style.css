@@ -16,3 +16,19 @@ p {
   font-size: 18px;
   margin-top: 10px;
 }
+
+.button {
+  display: inline-block;
+  background-color: #007acc;
+  color: #fff;
+  padding: 12px 20px;
+  margin: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #005f99;
+}

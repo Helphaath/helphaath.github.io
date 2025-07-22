@@ -1,30 +1,52 @@
 body {
-  background-color: #f2f2f2;
+  background: #f5f7fa;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .container {
-  padding: 40px 20px;
-}
-
-.logo {
-  width: 150px;
-  height: auto;
-  margin-bottom: 20px;
+  padding-top: 100px;
 }
 
 h1 {
-  color: #222;
+  color: #1c1c1c;
   font-size: 2.5em;
-  margin-bottom: 10px;
 }
 
 p {
-  color: #555;
-  font-size: 1.1em;
-  max-width: 600px;
-  margin: 0 auto;
+  font-size: 1.3em;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 8px;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.worker {
+  background-color: #007bff;
+}
+
+.worker:hover {
+  background-color: #0056b3;
+}
+
+.taker {
+  background-color: #28a745;
+}
+
+.taker:hover {
+  background-color: #1e7e34;
 }

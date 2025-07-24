@@ -1,44 +1,18 @@
-/* Style the logo image */
-.logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-/* Center container and add spacing */
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 40px;
-  background-color: #ffffffcc;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Style the buttons */
 .btn {
   display: inline-block;
   margin: 10px;
-  padding: 12px 24px;
+  padding: 12px 28px;
   font-size: 16px;
-  text-decoration: none;
-  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
   color: #fff;
-  transition: background 0.3s ease;
+  background: linear-gradient(45deg, #00bcd4, #2196f3);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.btn.worker {
-  background-color: #00796b;
-}
-
-.btn.worker:hover {
-  background-color: #004d40;
-}
-
-.btn.taker {
-  background-color: #0288d1;
-}
-
-.btn.taker:hover {
-  background-color: #01579b;
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
 }

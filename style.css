@@ -1,61 +1,88 @@
-body {
+/* Global Reset */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #00bcd4, #2196f3);
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-
-.container {
   text-align: center;
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
+/* Logo Styling */
 .logo {
-  width: 120px;
+  width: 100px;
+  height: auto;
   margin-bottom: 20px;
+  animation: floatLogo 2.5s ease-in-out infinite;
 }
 
-h1 {
-  font-size: 32px;
+/* Welcome Page Styles */
+.welcome-container {
+  max-width: 600px;
+}
+
+.welcome-title {
+  font-size: 36px;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-p {
+.welcome-subtitle {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.buttons {
-  margin-top: 20px;
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 28px;
+  padding: 14px 28px;
   font-size: 16px;
+  background: #fff;
+  color: #2196f3;
   font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  background: linear-gradient(45deg, #00bcd4, #2196f3);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
+  background: #e0f7fa;
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
 }
 
-.footer {
+/* Footer */
+footer {
   margin-top: 40px;
   font-size: 14px;
-  color: #777;
+  color: #e0f7fa;
+}
+
+/* Animations */
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Responsive */
+@media (min-width: 600px) {
+  .button-group {
+    flex-direction: row;
+    justify-content: center;
+  }
 }

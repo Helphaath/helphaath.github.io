@@ -5,19 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Help Haath - Service Taker</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #d1e4f6, #f3f9fe);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(45deg, #00bcd4, #2196f3);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .container {
+      flex: 1;
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeInUp 1s ease;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #1a237e;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 12px;
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      background: linear-gradient(45deg, #00bcd4, #2196f3);
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+    }
+
+    footer {
+      background: #f1f1f1;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .btn {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome, Service Taker!</h1>
-    <p>Need a painter, plumber, electrician, or any skilled worker?</p>
-    <p>Fill the form below and we’ll connect you to verified workers near you.</p>
-    
-    <a href="https://forms.gle/8CVBbL3m6szMurGq7" class="btn taker">
-      Book a Worker Now
-    </a>
+  <header>
+    Help Haath - Service Taker Dashboard
+  </header>
 
-    <br /><br />
-    <a href="index.html" class="back-link">⬅️ Go Back to Home</a>
+  <div class="container">
+    <h2>Find a Trusted Worker</h2>
+    <p>Choose a service or make a booking:</p>
+
+    <a href="https://forms.gle/8CVBbL3m6szMurGq7" class="btn">Book a Service</a>
+    <a href="#" class="btn">Make Payment</a>
+
+    <p style="margin-top: 20px;">🔍 Advanced worker search and live chat coming soon!</p>
   </div>
+
+  <footer>
+    © 2025 Help Haath | All rights reserved.
+  </footer>
 </body>
 </html>

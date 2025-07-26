@@ -2,27 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Worker Portal - Help Haath</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help Haath - Worker</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e3f2fd, #90caf9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      color: #1976d2;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      background: linear-gradient(45deg, #00bcd4, #2196f3);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Help Haath Logo" class="logo" />
-
-    <h1 class="animated-title">Welcome, Help Haath Worker!</h1>
-    <p class="subtext">Join our mission to serve better. Register below to get started.</p>
-
-    <a href="https://forms.gle/3ex2CTXDcrNmECKV7" class="btn">Register as a Worker</a>
-
-    <div class="dashboard">
-      <h2>📋 Worker Dashboard (Coming Soon)</h2>
-      <p>You’ll be able to view your bookings, earnings, and more right here.</p>
-    </div>
+    <h1>Welcome, Worker!</h1>
+    <p>Thank you for choosing Help Haath. Click the button below to register yourself as a worker.</p>
+    <a href="https://forms.gle/3ex2CTXDcrNmECKV7" class="btn">Register as Worker</a>
   </div>
-
-  <footer>
-    <p>© 2025 Help Haath. All rights reserved.</p>
-  </footer>
 </body>
 </html>

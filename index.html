@@ -1,125 +1,106 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Help Haath</title>
+  <title>HelpHaath - Welcome</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    * {
+    /* Inline styles for animations and layout */
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }body {
-  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      color: white;
+    }
 
-.container {
-  text-align: center;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1.2s ease-in-out;
-  width: 90%;
-  max-width: 500px;
-}
+    .logo {
+      width: 120px;
+      animation: float 3s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
 
-.logo {
-  width: 100px;
-  margin-bottom: 1rem;
-  animation: bounceIn 1.5s ease;
-}
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
 
-h1 {
-  font-size: 2.2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
 
-.btn {
-  display: block;
-  width: 100%;
-  padding: 0.9rem;
-  margin: 0.6rem 0;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 12px;
-  transition: background-color 0.3s ease;
-}
+    .button-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-.btn:hover {
-  background-color: #0056b3;
-}
+    .btn {
+      padding: 12px 24px;
+      background-color: #ffffff;
+      color: #333;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+    }
 
-footer {
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
-  color: #aaa;
-}
+    .btn:hover {
+      background-color: #f2f2f2;
+      transform: scale(1.05);
+    }
 
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      color: #eee;
+    }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.6rem;
-  }
-  .btn {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-}
+      p {
+        font-size: 1rem;
+      }
 
+      .btn {
+        width: 100%;
+        max-width: 250px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="logo.png" alt="Help Haath Logo" class="logo"/>
-    <h1>Welcome to Help Haath</h1>
-    <p>Connecting Service Takers & Workers Seamlessly</p>
-    <a href="worker.html" class="btn">I’m a Worker</a>
-    <a href="service.html" class="btn">I’m a Service Taker</a>
-    <footer>
-      <p>© 2025 Help Haath. All rights reserved.</p>
-    </footer>
+
+  <img src="logo.png" alt="HelpHaath Logo" class="logo" />
+  <h1>Welcome to HelpHaath</h1>
+  <p>Empowering workers and service takers — globally and directly.</p>
+
+  <div class="button-container">
+    <a href="worker.html" class="btn">I'm a Worker</a>
+    <a href="service.html" class="btn">I'm a Service Taker</a>
   </div>
+
+  <footer>&copy; 2025 HelpHaath. All rights reserved.</footer>
 </body>
 </html>

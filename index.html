@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HelpHaath - Welcome</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" type="image/png" />
   <style>
-    /* Inline styles for animations and layout */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,9 +15,10 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
       color: white;
+      padding: 20px;
     }
 
     .logo {
@@ -58,20 +58,21 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .btn:hover {
-      background-color: #f2f2f2;
+      background-color: #f9f9f9;
       transform: scale(1.05);
     }
 
     footer {
       position: absolute;
-      bottom: 10px;
+      bottom: 15px;
       font-size: 0.8rem;
-      color: #eee;
+      color: #f3f3f3;
     }
 
     @media (max-width: 600px) {
@@ -85,7 +86,7 @@
 
       .btn {
         width: 100%;
-        max-width: 250px;
+        max-width: 220px;
       }
     }
   </style>
@@ -102,5 +103,6 @@
   </div>
 
   <footer>&copy; 2025 HelpHaath. All rights reserved.</footer>
+
 </body>
 </html>

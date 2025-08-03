@@ -1,88 +1,78 @@
-/* Global Reset */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(120deg, #00bcd4, #2196f3);
-  color: #fff;
+  background: linear-gradient(135deg, #f7f8fa, #dfe9f3);
+  color: #333;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  text-align: center;
-  padding: 20px;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-/* Logo Styling */
-.logo {
-  width: 100px;
-  height: auto;
-  margin-bottom: 20px;
-  animation: floatLogo 2.5s ease-in-out infinite;
-}
-
-/* Welcome Page Styles */
-.welcome-container {
+.container {
   max-width: 600px;
+  width: 90%;
+  background: #fff;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.welcome-title {
-  font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 10px;
+.logo {
+  width: 120px;
+  margin-bottom: 1.5rem;
 }
 
-.welcome-subtitle {
-  font-size: 18px;
-  margin-bottom: 30px;
+h1 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 0.5rem;
 }
 
-/* Button Group */
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #555;
 }
 
 .btn {
-  padding: 14px 28px;
-  font-size: 16px;
-  background: #fff;
-  color: #2196f3;
-  font-weight: bold;
+  display: block;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  margin: 1rem 0;
   text-decoration: none;
-  border-radius: 8px;
-  transition: 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
 }
 
 .btn:hover {
-  background: #e0f7fa;
-  transform: scale(1.05);
+  background: #0056b3;
 }
 
-/* Footer */
 footer {
-  margin-top: 40px;
-  font-size: 14px;
-  color: #e0f7fa;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: #888;
 }
 
-/* Animations */
-@keyframes floatLogo {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem;
+  }
 
-/* Responsive */
-@media (min-width: 600px) {
-  .button-group {
-    flex-direction: row;
-    justify-content: center;
+  .btn {
+    font-size: 0.95rem;
   }
 }

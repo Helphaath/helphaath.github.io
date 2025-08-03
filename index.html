@@ -1,22 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Help Haath</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }body {
+  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1.2s ease-in-out;
+  width: 90%;
+  max-width: 500px;
+}
+
+.logo {
+  width: 100px;
+  margin-bottom: 1rem;
+  animation: bounceIn 1.5s ease;
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem;
+  margin: 0.6rem 0;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+}
+
+  </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <img src="logo.png" alt="Help Haath Logo" class="logo"/>
-      <h1>Welcome to Help Haath</h1>
-      <p>Connecting Service Takers & Workers Seamlessly</p>
-    </header>
-    <main>
-      <a href="worker.html" class="btn">I’m a Worker</a>
-      <a href="service.html" class="btn">I’m a Service Taker</a>
-    </main>
+    <img src="logo.png" alt="Help Haath Logo" class="logo"/>
+    <h1>Welcome to Help Haath</h1>
+    <p>Connecting Service Takers & Workers Seamlessly</p>
+    <a href="worker.html" class="btn">I’m a Worker</a>
+    <a href="service.html" class="btn">I’m a Service Taker</a>
     <footer>
       <p>© 2025 Help Haath. All rights reserved.</p>
     </footer>

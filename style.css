@@ -1,4 +1,4 @@
-/* style.css */
+/* style.css - Final version for HelpHaath homepage */
 
 * {
   margin: 0;
@@ -8,109 +8,112 @@
 
 body, html {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: white;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
   overflow: hidden;
 }
 
 .background-animation {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(-45deg, #4facfe, #00f2fe, #43e97b, #38f9d7);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  background: linear-gradient(270deg, #1e3c72, #2a5298, #1e3c72);
+  background-size: 600% 600%;
+  animation: gradientMove 16s ease infinite;
   z-index: -1;
 }
 
-@keyframes gradient {
+@keyframes gradientMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-.content {
+.container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  text-align: center;
+  align-items: center;
   padding: 20px;
+  text-align: center;
 }
 
 .logo {
-  width: 130px;
-  animation: float 3s ease-in-out infinite;
+  width: 120px;
+  height: auto;
   margin-bottom: 20px;
+  animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-12px); }
   100% { transform: translateY(0); }
 }
 
-h1 {
-  font-size: 2.5rem;
+.main-heading {
+  font-size: 2.8rem;
+  font-weight: 700;
   margin-bottom: 10px;
-  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  letter-spacing: 1px;
+  text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
 }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+.tagline {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 40px;
+  max-width: 600px;
 }
 
-.button-container {
+.buttons {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
 }
 
 .btn {
-  padding: 14px 28px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
+  padding: 14px 30px;
+  border-radius: 50px;
+  background: #ffffff;
+  color: #1e3c72;
   font-weight: 600;
-  border-radius: 40px;
+  font-size: 1rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .btn:hover {
-  background-color: #fff;
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  background: #f0f0f0;
 }
 
 footer {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
+  margin-top: 60px;
   font-size: 0.9rem;
-  color: #eee;
-  z-index: 2;
+  color: #f0f0f0;
 }
 
-/* Responsive */
+/* Mobile Responsive */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.8rem;
+  .main-heading {
+    font-size: 2rem;
   }
 
-  p {
+  .tagline {
     font-size: 1rem;
   }
 
   .btn {
-    width: 90%;
+    width: 100%;
     max-width: 250px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
   }
 }

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HelpHaath - Empowering Work</title>
-  <link rel="icon" href="logo.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>HelpHaath - Empowering Direct Services</title>
+  <link rel="icon" href="logo.png" />
   <style>
+    /* RESET & BASE */
     * {
       margin: 0;
       padding: 0;
@@ -14,149 +14,113 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1b3cfc, #4cc3ff, #1b3cfc);
-      height: 100vh;
-      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Blue gradient */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
+      color: white;
+      padding: 20px;
+      overflow-x: hidden;
     }
 
+    /* LOGO ANIMATION */
     .logo {
-      width: 130px;
+      width: 140px;
       height: auto;
+      animation: floatLogo 4s ease-in-out infinite;
       margin-bottom: 30px;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 0 15px rgba(0,0,0,0.2));
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
+    @keyframes floatLogo {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
     }
 
     h1 {
-      font-size: 3rem;
-      font-weight: 800;
+      font-size: 2.8rem;
       margin-bottom: 10px;
-      color: #ffffff;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      font-weight: 600;
     }
 
     p {
       font-size: 1.2rem;
-      color: #e0f7ff;
-      max-width: 600px;
       margin-bottom: 40px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      max-width: 600px;
     }
 
+    /* BUTTONS */
     .button-container {
       display: flex;
-      gap: 25px;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-bottom: 30px;
     }
 
     .btn {
-      padding: 14px 34px;
-      background: linear-gradient(135deg, #0e82ff, #5fd2ff);
-      border: none;
-      border-radius: 60px;
-      color: white;
+      padding: 14px 28px;
+      font-size: 1rem;
       font-weight: 600;
-      font-size: 1.05rem;
+      border: none;
+      border-radius: 30px;
       text-decoration: none;
-      box-shadow: 0 4px 18px rgba(0, 136, 255, 0.4);
-      transition: all 0.3s ease;
+      color: #fff;
+      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient button */
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .btn:hover {
-      background: linear-gradient(135deg, #0073ff, #52bdf2);
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 136, 255, 0.5);
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #2a5298, #1e3c72);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
     }
 
+    /* FOOTER */
     footer {
       position: absolute;
-      bottom: 10px;
-      font-size: 0.9rem;
-      color: #d0f0ff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      bottom: 15px;
+      font-size: 0.85rem;
+      color: #ddd;
     }
 
-    @media (max-width: 600px) {
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
       h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       p {
         font-size: 1rem;
-        padding: 0 15px;
       }
 
       .btn {
-        padding: 12px 24px;
-        font-size: 0.95rem;
-        width: 90%;
-        max-width: 260px;
+        width: 100%;
+        max-width: 250px;
       }
-
-      .button-container {
-        gap: 15px;
-      }
-    }
-
-    /* Floating background bubbles */
-    .bubble {
-      position: absolute;
-      background-color: rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      animation: bubbleFloat 20s infinite ease-in-out;
-    }
-
-    .bubble1 { width: 100px; height: 100px; top: 10%; left: 15%; animation-delay: 0s; }
-    .bubble2 { width: 60px; height: 60px; top: 70%; left: 25%; animation-delay: 5s; }
-    .bubble3 { width: 80px; height: 80px; top: 30%; left: 70%; animation-delay: 10s; }
-    .bubble4 { width: 50px; height: 50px; top: 80%; left: 80%; animation-delay: 15s; }
-
-    @keyframes bubbleFloat {
-      0% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-30px) scale(1.05); }
-      100% { transform: translateY(0) scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <!-- Decorative Background Bubbles -->
-  <div class="bubble bubble1"></div>
-  <div class="bubble bubble2"></div>
-  <div class="bubble bubble3"></div>
-  <div class="bubble bubble4"></div>
-
-  <!-- Logo -->
   <img src="logo.png" alt="HelpHaath Logo" class="logo" />
-
-  <!-- Heading -->
   <h1>Welcome to HelpHaath</h1>
+  <p>Empowering workers and service takers through direct, trustworthy connections. No middlemen. Just reliable help.</p>
 
-  <!-- Tagline -->
-  <p>Start Earning. Start Growing. HelpHaath connects workers to real work — fast, simple, and fair.</p>
-
-  <!-- Call-to-Action Buttons -->
   <div class="button-container">
     <a href="worker.html" class="btn">I'm a Worker</a>
     <a href="service.html" class="btn">I'm a Service Taker</a>
   </div>
 
-  <!-- Footer -->
-  <footer>&copy; 2025 HelpHaath · Built with Purpose</footer>
+  <footer>&copy; 2025 HelpHaath • All Rights Reserved</footer>
 
 </body>
 </html>

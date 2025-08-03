@@ -1,4 +1,4 @@
-/* Reset basic styles */
+/* Reset defaults */
 * {
   margin: 0;
   padding: 0;
@@ -16,9 +16,9 @@ body {
 
 .container {
   background-color: #ffffff;
-  max-width: 600px;
+  max-width: 500px;
   width: 90%;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -31,27 +31,27 @@ body {
 
 h1 {
   font-size: 2rem;
-  margin-bottom: 0.5rem;
   color: #222;
+  margin-bottom: 0.5rem;
 }
 
 p {
   font-size: 1rem;
-  color: #666;
+  color: #555;
   margin-bottom: 2rem;
 }
 
 .btn {
   display: block;
   width: 100%;
-  padding: 0.9rem 1rem;
-  margin: 0.75rem 0;
+  padding: 0.9rem;
+  margin: 0.5rem 0;
   background-color: #007bff;
   color: white;
   text-decoration: none;
   font-size: 1rem;
   border-radius: 12px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .btn:hover {
@@ -64,10 +64,10 @@ footer {
   color: #999;
 }
 
-/* Responsive for mobile */
+/* Mobile Responsive */
 @media (max-width: 480px) {
   .container {
-    padding: 2rem 1.2rem;
+    padding: 1.5rem;
   }
 
   h1 {
@@ -76,6 +76,6 @@ footer {
 
   .btn {
     font-size: 0.95rem;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem;
   }
 }

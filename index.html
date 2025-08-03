@@ -4,105 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HelpHaath - Welcome</title>
-  <link rel="icon" href="logo.png" type="image/png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
-      color: white;
-      padding: 20px;
-    }
-
-    .logo {
-      width: 120px;
-      animation: float 3s ease-in-out infinite;
-      margin-bottom: 20px;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-    }
-
-    .button-container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 12px 24px;
-      background-color: #ffffff;
-      color: #333;
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn:hover {
-      background-color: #f9f9f9;
-      transform: scale(1.05);
-    }
-
-    footer {
-      position: absolute;
-      bottom: 15px;
-      font-size: 0.8rem;
-      color: #f3f3f3;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 220px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="background-animation"></div>
 
-  <img src="logo.png" alt="HelpHaath Logo" class="logo" />
-  <h1>Welcome to HelpHaath</h1>
-  <p>Empowering workers and service takers — globally and directly.</p>
+  <div class="content">
+    <img src="logo.png" alt="HelpHaath Logo" class="logo" />
+    <h1>Welcome to HelpHaath</h1>
+    <p>Empowering workers and service takers — globally and directly.</p>
 
-  <div class="button-container">
-    <a href="worker.html" class="btn">I'm a Worker</a>
-    <a href="service.html" class="btn">I'm a Service Taker</a>
+    <div class="button-container">
+      <a href="worker.html" class="btn">I'm a Worker</a>
+      <a href="service.html" class="btn">I'm a Service Taker</a>
+    </div>
   </div>
 
   <footer>&copy; 2025 HelpHaath. All rights reserved.</footer>
-
 </body>
 </html>

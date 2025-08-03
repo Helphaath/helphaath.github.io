@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HelpHaath - Empowering Direct Services</title>
+  <title>HelpHaath - Connecting Services</title>
   <link rel="icon" href="logo.png" />
   <style>
-    /* RESET & BASE */
+    /* Reset & Base Styling */
     * {
       margin: 0;
       padding: 0;
@@ -15,19 +15,17 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Blue gradient */
+      background: linear-gradient(to right, #0077b6, #00b4d8); /* Clean blue gradient */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
+      color: #ffffff;
       padding: 20px;
-      overflow-x: hidden;
     }
 
-    /* LOGO ANIMATION */
     .logo {
       width: 140px;
       height: auto;
@@ -40,7 +38,7 @@
         transform: translateY(0);
       }
       50% {
-        transform: translateY(-12px);
+        transform: translateY(-10px);
       }
     }
 
@@ -54,15 +52,14 @@
       font-size: 1.2rem;
       margin-bottom: 40px;
       max-width: 600px;
+      line-height: 1.5;
     }
 
-    /* BUTTONS */
     .button-container {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 30px;
     }
 
     .btn {
@@ -72,27 +69,23 @@
       border: none;
       border-radius: 30px;
       text-decoration: none;
-      color: #fff;
-      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient button */
-      transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      color: #ffffff;
+      background: linear-gradient(to right, #1e6091, #168aad); /* Professional blue gradient */
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .btn:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, #2a5298, #1e3c72);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      background: linear-gradient(to right, #168aad, #1e6091);
+      transform: translateY(-2px);
     }
 
-    /* FOOTER */
     footer {
-      position: absolute;
-      bottom: 15px;
-      font-size: 0.85rem;
-      color: #ddd;
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #e0f7fa;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       h1 {
         font-size: 2.2rem;
@@ -113,14 +106,14 @@
 
   <img src="logo.png" alt="HelpHaath Logo" class="logo" />
   <h1>Welcome to HelpHaath</h1>
-  <p>Empowering workers and service takers through direct, trustworthy connections. No middlemen. Just reliable help.</p>
+  <p>Empowering service takers and workers with a direct, trustworthy connection. Say goodbye to middlemen. Find or offer help with confidence.</p>
 
   <div class="button-container">
     <a href="worker.html" class="btn">I'm a Worker</a>
     <a href="service.html" class="btn">I'm a Service Taker</a>
   </div>
 
-  <footer>&copy; 2025 HelpHaath • All Rights Reserved</footer>
+  <footer>&copy; 2025 HelpHaath. All rights reserved.</footer>
 
 </body>
 </html>

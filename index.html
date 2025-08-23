@@ -7,113 +7,331 @@
   <link rel="icon" href="logo.png" />
   <style>
     /* Reset & Base Styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Help Haath – Transform Hard Work Into Smart Work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-start:#0b1226; /* deep navy */
+      --bg-end:#0b1e43;  /* indigo */
+      --brand:#3b82f6;   /* primary blue */
+      --brand-2:#6366f1; /* indigo */
+      --accent:#22c55e;  /* green */
+      --warning:#f59e0b; /* amber */
+      --text:#e6e9f2;
+      --muted:#9aa3b2;
+      --card:#0f1a36;
+      --card-2:#0c1530;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
     }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #0077b6, #00b4d8); /* Clean blue gradient */
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #ffffff;
-      padding: 20px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 900px at 80% -10%, #1e2a5a 0%, transparent 60%) fixed,
+                  radial-gradient(800px 600px at -20% 10%, #1a2b72 0%, transparent 60%) fixed,
+                  linear-gradient(135deg,var(--bg-start),var(--bg-end));
     }
-
-    .logo {
-      width: 140px;
-      height: auto;
-      animation: floatLogo 4s ease-in-out infinite;
-      margin-bottom: 30px;
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px,92%);margin:0 auto}
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(160%) blur(8px);
+      background:rgba(10,16,36,.45);
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .logo span{font-weight:900}
+    .links{display:flex;gap:22px;font-weight:600}
+    .links a{opacity:.85}
+    .links a:hover{opacity:1}
+    .actions{display:flex;gap:10px}
+    .btn{appearance:none;border:0;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;transition:.2s transform,.2s opacity,.2s box-shadow}
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;box-shadow:var(--shadow)}
+    .btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}/* HERO */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:84px 0 40px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);padding:6px 10px;border-radius:999px;color:#b9d3ff;font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+h1{font-size: clamp(36px,6vw,64px);line-height:1.05;margin:16px 0}
+.sub{font-size: clamp(16px,2.5vw,20px);color:var(--muted);max-width:58ch}
+.cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
+.ill-wrap{position:relative}
+.blob{position:absolute;inset:-60px -40px -40px -60px;background:radial-gradient(520px 400px at 40% 40%,rgba(59,130,246,.25),transparent 58%),radial-gradient(420px 300px at 70% 60%,rgba(99,102,241,.25),transparent 60%)}
+.ill{
+  position:relative;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)
+}
+.ill img{width:100%;max-width:560px;display:block;border-radius:14px}
 
-    @keyframes floatLogo {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
+/* SECTIONS */
+section{padding:72px 0}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:10px 0 8px}
+.muted{color:var(--muted)}
+.kpi{font-size:48px;font-weight:800}
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+/* SEARCH */
+.search{display:grid;grid-template-columns:320px 1fr;gap:22px}
+.filters{background:var(--card-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:18px}
+.input, select{width:100%;background:#0b1430;color:var(--text);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px}
+.list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.worker{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#60a5fa,#a78bfa);display:grid;place-items:center;font-weight:800}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;font-size:12px}
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-      max-width: 600px;
-      line-height: 1.5;
-    }
+/* TESTIMONIALS */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+blockquote{margin:0;padding:18px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius)}
+blockquote footer{color:var(--muted);margin-top:10px}
 
-    .button-container {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+/* FOOTER */
+footer{padding:36px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
 
-    .btn {
-      padding: 14px 28px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      text-decoration: none;
-      color: #ffffff;
-      background: linear-gradient(to right, #1e6091, #168aad); /* Professional blue gradient */
-      transition: background 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,10,30,.65);display:none;place-items:center;z-index:100}
+.modal.open{display:grid}
+.sheet{width:min(720px,92%);background:#0b1430;border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow);padding:22px}
+.sheet h2{margin:.2rem 0 0}
 
-    .btn:hover {
-      background: linear-gradient(to right, #168aad, #1e6091);
-      transform: translateY(-2px);
-    }
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr}
+  .search{grid-template-columns:1fr}
+  .list{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .quotes{grid-template-columns:1fr}
+}
 
-    footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #e0f7fa;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      .btn {
-        width: 100%;
-        max-width: 250px;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <img src="logo.png" alt="HelpHaath Logo" class="logo" />
-  <h1>Welcome to HelpHaath</h1>
-  <p>Empowering service takers and workers with a direct, trustworthy connection. Say goodbye to middlemen. Find or offer help with confidence.</p>
-
-  <div class="button-container">
-    <a href="worker.html" class="btn">I'm a Worker</a>
-    <a href="service.html" class="btn">I'm a Service Taker</a>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#"><div class="logo"><span>🤝</span></div> Help Haath</a>
+      <nav class="links">
+        <a href="#how">How it Works</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#search">Find Workers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="actions">
+        <button class="btn btn-ghost" id="btn-login">Sign In</button>
+        <button class="btn btn-primary" id="btn-join">Join as Worker</button>
+      </div>
+    </div>
+  </header>  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Direct. Fair. Secure.</span>
+        <h1>Transform Hard Work<br/>Into <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Smart Work</span></h1>
+        <p class="sub">Maximize productivity and achieve your goals efficiently. Post tasks, connect with verified workers, and pay securely—without middlemen.</p>
+        <div class="cta">
+          <a href="#search" class="btn btn-primary">Get Started</a>
+          <button class="btn btn-ghost" id="btn-service">I’m a Service Taker</button>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <span class="pill">🔒 Escrow-ready (placeholder)</span>
+          <span class="pill">⚡ Instant notifications</span>
+          <span class="pill">✅ Verified profiles</span>
+        </div>
+      </div>
+      <div class="ill-wrap">
+        <div class="blob" aria-hidden="true"></div>
+        <div class="ill">
+          <!-- Hero illustration placeholder (SVG) -->
+          <img alt="Illustration of collaboration" src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop" />
+        </div>
+      </div>
+    </section><!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How Help Haath Works</h2>
+  <p class="muted">Three simple steps for workers and service takers.</p>
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card">
+      <div class="pill">1 • Post or Offer</div>
+      <h3>Describe the task or your skill</h3>
+      <p class="muted">Add details, budget, and location—or list your skills and availability.</p>
+    </div>
+    <div class="card">
+      <div class="pill">2 • Connect</div>
+      <h3>Chat & confirm in minutes</h3>
+      <p class="muted">Shortlist profiles, agree on scope, and lock the booking.</p>
+    </div>
+    <div class="card">
+      <div class="pill">3 • Done & Paid</div>
+      <h3>Complete with confidence</h3>
+      <p class="muted">Secure payments (placeholder) and transparent ratings keep things fair.</p>
+    </div>
   </div>
+</section>
 
-  <footer>&copy; 2025 HelpHaath. All rights reserved.</footer>
+<!-- BENEFITS -->
+<section id="benefits">
+  <h2>Why Choose Help Haath</h2>
+  <div class="grid-3" style="margin-top:16px">
+    <div class="card"><h3>Direct, No Middlemen</h3><p class="muted">Better pay for workers, better prices for service takers.</p></div>
+    <div class="card"><h3>Verified & Transparent</h3><p class="muted">Profile checks and public ratings build trust from day one.</p></div>
+    <div class="card"><h3>Designed for Speed</h3><p class="muted">Smart search, themes by day, and batch booking features.</p></div>
+  </div>
+</section>
 
-</body>
+<!-- SEARCH / DIRECTORY -->
+<section id="search">
+  <h2>Find a Worker</h2>
+  <div class="search" style="margin-top:10px">
+    <aside class="filters">
+      <label>What do you need?
+        <input class="input" id="filter-skill" placeholder="e.g., Electrician, Cleaner, Tutor" />
+      </label>
+      <label style="display:block;margin-top:12px">City/Area
+        <input class="input" id="filter-city" placeholder="e.g., Bengaluru, Andheri" />
+      </label>
+      <label style="display:block;margin-top:12px">Budget (₹)
+        <select id="filter-budget">
+          <option value="any">Any</option>
+          <option value="low">Under 500</option>
+          <option value="mid">500–1500</option>
+          <option value="high">1500+</option>
+        </select>
+      </label>
+      <button class="btn btn-primary" style="width:100%;margin-top:12px" id="btn-apply">Apply Filters</button>
+    </aside>
+    <div class="list" id="worker-list">
+      <!-- Cards rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <h2>What People Say</h2>
+  <div class="quotes" style="margin-top:12px">
+    <blockquote>“Booked a reliable pro in 10 minutes. Smooth experience!”<footer>— Service Taker</footer></blockquote>
+    <blockquote>“I earn more without middlemen. Instant bookings!”<footer>— Worker</footer></blockquote>
+    <blockquote>“Simple, fair, and fast. Exactly what I needed.”<footer>— Service Taker</footer></blockquote>
+  </div>
+</section>
+
+  </main>  <footer id="contact">
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Help Haath. All rights reserved.</div>
+      <div class="muted">Contact: support@helphaath.example • Instagram: @helphaath</div>
+    </div>
+  </footer>  <!-- MODALS -->  <div class="modal" id="modal-worker" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h2>Join as Worker</h2>
+        <button class="btn btn-ghost" data-close>Close</button>
+      </div>
+      <p class="muted">Register in under 3 minutes. Build your profile and start getting bookings.</p>
+      <div class="grid-3">
+        <a class="card" href="https://forms.gle/3ex2CTXDcrNmECKV7" target="_blank" rel="noopener">
+          <h3>Worker Registration (Google Form)</h3>
+          <p class="muted">Official sign-up link. Add your skills, city, and availability.</p>
+          <span class="pill">Opens in new tab ↗</span>
+        </a>
+        <div class="card">
+          <h3>Profile Tips</h3>
+          <ul class="muted">
+            <li>Use a clear photo & skill headline</li>
+            <li>Add 3–5 recent jobs or experience</li>
+            <li>Set your service areas & timings</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Next: Get Verified</h3>
+          <p class="muted">ID & phone verification (placeholder). Verification boosts trust and bookings.</p>
+        </div>
+      </div>
+    </div>
+  </div>  <div class="modal" id="modal-service" aria-hidden="true">
+    <div class="sheet">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h2>I’m a Service Taker</h2>
+        <button class="btn btn-ghost" data-close>Close</button>
+      </div>
+      <p class="muted">Post a task and receive responses quickly. You can also search and book directly.</p>
+      <div class="grid-3">
+        <a class="card" href="#search">
+          <h3>Search & Book</h3>
+          <p class="muted">Use filters to find the right worker by skill, city, and budget.</p>
+        </a>
+        <div class="card">
+          <h3>Post a Task (Placeholder)</h3>
+          <p class="muted">Coming soon: simple form to post your task and receive offers.</p>
+          <button class="btn btn-primary">Create Task</button>
+        </div>
+        <div class="card">
+          <h3>Secure Payments (Placeholder)</h3>
+          <p class="muted">Hold funds safely until the job is done. Releases instantly on completion.</p>
+        </div>
+      </div>
+    </div>
+  </div>  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple fake data for directory
+    const data = [
+      { name:'Alex P.', skill:'Electrician', city:'Pune', price:1200, rating:4.9 },
+      { name:'Sam K.', skill:'Cleaner', city:'Mumbai', price:600, rating:4.7 },
+      { name:'Lee R.', skill:'Carpenter', city:'Delhi', price:1500, rating:4.8 },
+      { name:'Pat T.', skill:'Tutor (Math)', city:'Bengaluru', price:800, rating:4.6 },
+      { name:'Jordan C.', skill:'Plumber', city:'Mumbai', price:1300, rating:4.9 },
+      { name:'Taylor N.', skill:'Painter', city:'Noida', price:1100, rating:4.5 }
+    ];
+
+    const list = document.getElementById('worker-list');
+    const render = (rows)=>{
+      list.innerHTML = rows.map(r=>`
+        <article class="worker">
+          <div class="avatar">${r.skill[0]}</div>
+          <div>
+            <h3 style="margin:0">${r.name}</h3>
+            <p class="muted" style="margin:.2rem 0 .6rem 0">${r.skill} • ${r.city}</p>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+              <span class="pill">₹${r.price}</span>
+              <span class="pill">⭐ ${r.rating}</span>
+              <button class="btn btn-primary" onclick="alert('Booking placeholder')">Book</button>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    };
+    render(data);
+
+    // Filters
+    document.getElementById('btn-apply').addEventListener('click',()=>{
+      const s = document.getElementById('filter-skill').value.trim().toLowerCase();
+      const c = document.getElementById('filter-city').value.trim().toLowerCase();
+      const b = document.getElementById('filter-budget').value;
+      const rows = data.filter(r=>
+        (!s || r.skill.toLowerCase().includes(s)) &&
+        (!c || r.city.toLowerCase().includes(c)) &&
+        (b==='any' || (b==='low' && r.price<500) || (b==='mid' && r.price>=500 && r.price<=1500) || (b==='high' && r.price>1500))
+      );
+      render(rows);
+    });
+
+    // Modals
+    const open = id => document.getElementById(id).classList.add('open');
+    const closeAll = () => document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));
+    document.getElementById('btn-join').addEventListener('click',()=>open('modal-worker'));
+    document.getElementById('btn-service').addEventListener('click',()=>open('modal-service'));
+    document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeAll));
+    document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) closeAll(); }));
+
+    // Sign in (placeholder)
+    document.getElementById('btn-login').addEventListener('click',()=>alert('Authentication placeholder'));
+  </script></body>
 </html>

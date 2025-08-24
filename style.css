@@ -1,119 +1,73 @@
-/* style.css - Final version for HelpHaath homepage */
-
+/* General reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body, html {
-  height: 100%;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  overflow: hidden;
-}
-
-.background-animation {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(270deg, #1e3c72, #2a5298, #1e3c72);
-  background-size: 600% 600%;
-  animation: gradientMove 16s ease infinite;
-  z-index: -1;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
 }
 
 .container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  max-width: 600px;
   padding: 20px;
-  text-align: center;
 }
 
 .logo {
   width: 120px;
-  height: auto;
   margin-bottom: 20px;
-  animation: float 4s ease-in-out infinite;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-  100% { transform: translateY(0); }
-}
-
-.main-heading {
-  font-size: 2.8rem;
-  font-weight: 700;
+h1 {
+  font-size: 2.5rem;
   margin-bottom: 10px;
-  letter-spacing: 1px;
-  text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+  animation: fadeIn 1.5s ease-in-out;
 }
 
-.tagline {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 40px;
-  max-width: 600px;
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
 }
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
 }
 
 .btn {
-  padding: 14px 30px;
-  border-radius: 50px;
-  background: #ffffff;
-  color: #1e3c72;
-  font-weight: 600;
-  font-size: 1rem;
+  padding: 15px 25px;
+  border-radius: 30px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  color: white;
+  font-size: 1.1rem;
+  transition: 0.3s ease;
+}
+
+.worker-btn {
+  background: #ff6b6b;
+}
+
+.service-btn {
+  background: #4ecdc4;
 }
 
 .btn:hover {
   transform: scale(1.05);
-  background: #f0f0f0;
+  opacity: 0.9;
 }
 
-footer {
-  margin-top: 60px;
-  font-size: 0.9rem;
-  color: #f0f0f0;
-}
-
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .main-heading {
-    font-size: 2rem;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .btn {
-    width: 100%;
-    max-width: 250px;
-  }
-
-  .buttons {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Simple animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

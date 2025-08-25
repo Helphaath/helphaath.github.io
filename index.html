@@ -3,158 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help Haath - Professional Service Platform</title>
-  <link rel="icon" href="logo.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ------------------ BASE STYLING ------------------ */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-    body { background: #0b0d23; color: #ffffff; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; }
-    button { cursor: pointer; border: none; outline: none; }
-
-    /* ------------------ HEADER ------------------ */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(11, 13, 35, 0.9);
-      z-index: 1000;
-    }
-    header .logo { font-weight: 700; font-size: 24px; color: #fff; }
-    nav ul { list-style: none; display: flex; gap: 30px; align-items: center; }
-    nav ul li a { color: #fff; font-weight: 500; transition: 0.3s; }
-    nav ul li a:hover { color: #4f46e5; }
-    .header-buttons { display: flex; gap: 15px; }
-    .btn-primary { padding: 10px 20px; background: #4f46e5; color: #fff; border-radius: 8px; font-weight: 600; transition: 0.3s; }
-    .btn-primary:hover { background: #6366f1; }
-    .btn-secondary { padding: 10px 20px; background: #1f2233; color: #fff; border-radius: 8px; font-weight: 600; transition: 0.3s; }
-    .btn-secondary:hover { background: #32364a; }
-
-    /* ------------------ HERO SECTION ------------------ */
-    section.hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 150px 50px 100px 50px;
-      background: linear-gradient(135deg, #0b0d23, #1f2233);
-    }
-    .hero-text { max-width: 600px; }
-    .hero-text h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; }
-    .hero-text p { font-size: 18px; margin-bottom: 30px; color: #cbd5e1; }
-    .hero-buttons { display: flex; gap: 20px; }
-    .hero-buttons button { font-size: 16px; }
-
-    .hero-graphic { position: relative; }
-    .hero-graphic svg, .hero-graphic img { max-width: 500px; }
-
-    /* ------------------ OFFER SECTION ------------------ */
-    section.offer {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 50px;
-      background: #14182f;
-    }
-    .offer-box {
-      background: #1f2233;
-      padding: 40px;
-      border-radius: 15px;
-      max-width: 400px;
-      text-align: center;
-    }
-    .offer-box h2 { font-size: 28px; margin-bottom: 20px; }
-    .offer-box p { font-size: 16px; margin-bottom: 25px; color: #cbd5e1; }
-    .offer-box button { width: 100%; }
-
-    /* ------------------ COURSES SECTION ------------------ */
-    section.courses {
-      padding: 100px 50px;
-    }
-    section.courses h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
-    .course-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    .course-card {
-      background: #1f2233;
-      border-radius: 15px;
-      padding: 20px;
-      transition: 0.3s;
-    }
-    .course-card:hover { background: #32364a; }
-    .course-card h3 { font-size: 22px; margin-bottom: 15px; }
-    .course-card p { font-size: 14px; margin-bottom: 20px; color: #cbd5e1; }
-    .course-card button { width: 100%; }
-
-    /* ------------------ SERVICES SECTION ------------------ */
-    section.services {
-      padding: 100px 50px;
-      background: #0b0d23;
-    }
-    section.services h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
-    .services-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-    .service-card {
-      background: #1f2233;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      transition: 0.3s;
-    }
-    .service-card:hover { background: #32364a; }
-    .service-card h3 { margin-bottom: 15px; font-size: 22px; }
-    .service-card p { font-size: 14px; color: #cbd5e1; }
-
-    /* ------------------ CONTACT SECTION ------------------ */
-    section.contact {
-      padding: 100px 50px;
-      background: #14182f;
-    }
-    section.contact h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
-    .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-    .contact-form input, .contact-form textarea {
-      padding: 15px;
-      border-radius: 10px;
-      border: none;
-      background: #1f2233;
-      color: #fff;
-      font-size: 16px;
-    }
-    .contact-form button { padding: 15px; font-size: 16px; }
-
-    /* ------------------ FOOTER ------------------ */
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #0b0d23;
-      color: #8892b0;
-    }
-
-    /* ------------------ RESPONSIVE ------------------ */
-    @media(max-width: 900px) {
-      section.hero { flex-direction: column; text-align: center; padding: 150px 20px; }
-      .hero-graphic { margin-top: 50px; }
-      header { flex-direction: column; gap: 20px; }
-      nav ul { flex-direction: column; gap: 10px; }
-    }
-  </style>
+  <title>HelpHaath - Connecting Services</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- ------------------ HEADER ------------------ -->
-  <header>
-    <div class="logo">Help Haath</div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="HelpHaath Logo">
+      <span>HelpHaath</span>
+    </div>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -162,102 +23,119 @@
         <li><a href="#courses">Courses</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="#signup" class="btn">Sign Up</a></li>
       </ul>
     </nav>
-    <div class="header-buttons">
-      <button class="btn-secondary" onclick="alert('Sign Up / Login functionality coming soon!')">Sign Up</button>
-      <button class="btn-primary">Login</button>
-    </div>
   </header>
 
-  <!-- ------------------ HERO SECTION ------------------ -->
-  <section class="hero" id="home">
-    <div class="hero-text">
-      <h1>Transform Hard Work Into Smart Work</h1>
-      <p>Learn how to maximize productivity and achieve your goals efficiently.</p>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Connecting You with Trusted Local Workers</h1>
+      <p>Get services done fast, secure, and directly. No middlemen. Transparent pricing. Verified workers.</p>
       <div class="hero-buttons">
-        <button class="btn-primary" onclick="alert('Get Started clicked!')">Get Started</button>
-        <button class="btn-secondary" onclick="alert('Join as Worker clicked!')">Join as Worker</button>
+        <a href="#signup" class="btn">I am a Worker</a>
+        <a href="#signup" class="btn btn-secondary">I am a Service Taker</a>
       </div>
     </div>
-    <div class="hero-graphic">
-      <img src="https://cdn-icons-png.flaticon.com/512/2910/2910763.png" alt="Working Graphic">
-    </div>
-  </section>
-
-  <!-- ------------------ OFFER SECTION ------------------ -->
-  <section class="offer">
-    <div class="offer-box">
-      <h2>Special Offer</h2>
-      <p>Sign up today and get exclusive access to our premium courses and services!</p>
-      <button class="btn-primary" onclick="alert('Offer Applied!')">Claim Now</button>
+    <div class="hero-image">
+      <img src="hero-image.png" alt="Service Illustration">
     </div>
   </section>
 
-  <!-- ------------------ COURSES SECTION ------------------ -->
-  <section class="courses" id="courses">
-    <h2>Our Courses</h2>
-    <div class="course-container">
-      <div class="course-card">
-        <h3>Productivity Mastery</h3>
-        <p>Learn to work smarter, not harder with proven productivity hacks.</p>
-        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
-      </div>
-      <div class="course-card">
-        <h3>Time Management Pro</h3>
-        <p>Manage your time efficiently and achieve your daily goals without stress.</p>
-        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
-      </div>
-      <div class="course-card">
-        <h3>Skill Development</h3>
-        <p>Upgrade your skills to enhance career growth and productivity.</p>
-        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
-      </div>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About HelpHaath</h2>
+      <p>HelpHaath is a platform connecting verified workers to people needing services. Our goal is to make hiring skilled professionals easy, fair, and secure. Direct transactions ensure better pay for workers and affordable services for everyone.</p>
     </div>
   </section>
 
-  <!-- ------------------ SERVICES SECTION ------------------ -->
-  <section class="services" id="services">
-    <h2>Our Services</h2>
-    <div class="services-container">
-      <div class="service-card">
-        <h3>Consulting</h3>
-        <p>Professional consulting to boost your business and personal growth.</p>
-      </div>
-      <div class="service-card">
-        <h3>Workshops</h3>
-        <p>Interactive workshops to enhance practical skills and productivity.</p>
-      </div>
-      <div class="service-card">
-        <h3>Online Courses</h3>
-        <p>Learn from industry experts with online courses available anytime.</p>
+  <!-- COURSES / LEARNING -->
+  <section id="courses" class="courses">
+    <div class="container">
+      <h2>Courses</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Skill 1</h3>
+          <p>Learn how to master Skill 1 and get hired fast.</p>
+          <a href="#" class="btn-small">Attend</a>
+        </div>
+        <div class="card">
+          <h3>Skill 2</h3>
+          <p>Advanced techniques to excel in Skill 2 and earn more.</p>
+          <a href="#" class="btn-small">Attend</a>
+        </div>
+        <div class="card">
+          <h3>Skill 3</h3>
+          <p>Beginner to pro guidance to get jobs instantly.</p>
+          <a href="#" class="btn-small">Attend</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ------------------ CONTACT SECTION ------------------ -->
-  <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <form class="contact-form" onsubmit="handleContact(event)">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
+  <!-- SERVICES / OFFER SECTION -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Services We Provide</h2>
+      <div class="service-grid">
+        <div class="service-item">
+          <h3>Plumbing</h3>
+          <p>Certified plumbers ready to fix leaks and install pipelines.</p>
+        </div>
+        <div class="service-item">
+          <h3>Cleaning</h3>
+          <p>Professional cleaning staff for home and office.</p>
+        </div>
+        <div class="service-item">
+          <h3>Electrical</h3>
+          <p>Skilled electricians for wiring, installations, and repairs.</p>
+        </div>
+        <div class="service-item">
+          <h3>Carpentry</h3>
+          <p>Expert carpenters for furniture, fittings, and renovations.</p>
+        </div>
+        <div class="service-item">
+          <h3>More Services</h3>
+          <p>Click here to see all available services.</p>
+          <a href="#services" class="btn-small">More</a>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ------------------ FOOTER ------------------ -->
-  <footer>
-    &copy; 2025 Help Haath. All rights reserved.
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:support@helphaath.com">support@helphaath.com</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/helphaath/" target="_blank">@helphaath</a></p>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SIGNUP SECTION -->
+  <section id="signup" class="signup">
+    <div class="container">
+      <h2>Join HelpHaath</h2>
+      <p>Whether you’re a worker or a service seeker, get started in minutes.</p>
+      <div class="signup-buttons">
+        <a href="https://forms.gle/3ex2CTXDcrNmECKV7" class="btn">Worker Sign Up</a>
+        <a href="https://forms.gle/3ex2CTXDcrNmECKV7" class="btn btn-secondary">Service Taker Sign Up</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2025 HelpHaath. All rights reserved.</p>
   </footer>
 
-  <!-- ------------------ JS FUNCTIONS ------------------ -->
-  <script>
-    function handleContact(e) {
-      e.preventDefault();
-      alert('Thank you for contacting us! We will reach you shortly.');
-      e.target.reset();
-    }
-  </script>
 </body>
 </html>

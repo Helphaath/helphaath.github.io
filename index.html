@@ -1,337 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HelpHaath - Connecting Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Haath - Professional Service Platform</title>
   <link rel="icon" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset & Base Styling */
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Help Haath – Transform Hard Work Into Smart Work</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg-start:#0b1226; /* deep navy */
-      --bg-end:#0b1e43;  /* indigo */
-      --brand:#3b82f6;   /* primary blue */
-      --brand-2:#6366f1; /* indigo */
-      --accent:#22c55e;  /* green */
-      --warning:#f59e0b; /* amber */
-      --text:#e6e9f2;
-      --muted:#9aa3b2;
-      --card:#0f1a36;
-      --card-2:#0c1530;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-      --radius:18px;
+    /* ------------------ BASE STYLING ------------------ */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #0b0d23; color: #ffffff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+    button { cursor: pointer; border: none; outline: none; }
+
+    /* ------------------ HEADER ------------------ */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(11, 13, 35, 0.9);
+      z-index: 1000;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-      color:var(--text);
-      background: radial-gradient(1200px 900px at 80% -10%, #1e2a5a 0%, transparent 60%) fixed,
-                  radial-gradient(800px 600px at -20% 10%, #1a2b72 0%, transparent 60%) fixed,
-                  linear-gradient(135deg,var(--bg-start),var(--bg-end));
+    header .logo { font-weight: 700; font-size: 24px; color: #fff; }
+    nav ul { list-style: none; display: flex; gap: 30px; align-items: center; }
+    nav ul li a { color: #fff; font-weight: 500; transition: 0.3s; }
+    nav ul li a:hover { color: #4f46e5; }
+    .header-buttons { display: flex; gap: 15px; }
+    .btn-primary { padding: 10px 20px; background: #4f46e5; color: #fff; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+    .btn-primary:hover { background: #6366f1; }
+    .btn-secondary { padding: 10px 20px; background: #1f2233; color: #fff; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+    .btn-secondary:hover { background: #32364a; }
+
+    /* ------------------ HERO SECTION ------------------ */
+    section.hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 150px 50px 100px 50px;
+      background: linear-gradient(135deg, #0b0d23, #1f2233);
     }
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1200px,92%);margin:0 auto}
-    header{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:saturate(160%) blur(8px);
-      background:rgba(10,16,36,.45);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .hero-text { max-width: 600px; }
+    .hero-text h1 { font-size: 52px; font-weight: 700; margin-bottom: 20px; }
+    .hero-text p { font-size: 18px; margin-bottom: 30px; color: #cbd5e1; }
+    .hero-buttons { display: flex; gap: 20px; }
+    .hero-buttons button { font-size: 16px; }
+
+    .hero-graphic { position: relative; }
+    .hero-graphic svg, .hero-graphic img { max-width: 500px; }
+
+    /* ------------------ OFFER SECTION ------------------ */
+    section.offer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 50px;
+      background: #14182f;
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
-    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;box-shadow:var(--shadow)}
-    .logo span{font-weight:900}
-    .links{display:flex;gap:22px;font-weight:600}
-    .links a{opacity:.85}
-    .links a:hover{opacity:1}
-    .actions{display:flex;gap:10px}
-    .btn{appearance:none;border:0;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;transition:.2s transform,.2s opacity,.2s box-shadow}
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;box-shadow:var(--shadow)}
-    .btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}/* HERO */
-.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:84px 0 40px}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);padding:6px 10px;border-radius:999px;color:#b9d3ff;font-weight:700;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
-h1{font-size: clamp(36px,6vw,64px);line-height:1.05;margin:16px 0}
-.sub{font-size: clamp(16px,2.5vw,20px);color:var(--muted);max-width:58ch}
-.cta{display:flex;gap:14px;margin-top:26px;flex-wrap:wrap}
-.ill-wrap{position:relative}
-.blob{position:absolute;inset:-60px -40px -40px -60px;background:radial-gradient(520px 400px at 40% 40%,rgba(59,130,246,.25),transparent 58%),radial-gradient(420px 300px at 70% 60%,rgba(99,102,241,.25),transparent 60%)}
-.ill{
-  position:relative;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)
-}
-.ill img{width:100%;max-width:560px;display:block;border-radius:14px}
+    .offer-box {
+      background: #1f2233;
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .offer-box h2 { font-size: 28px; margin-bottom: 20px; }
+    .offer-box p { font-size: 16px; margin-bottom: 25px; color: #cbd5e1; }
+    .offer-box button { width: 100%; }
 
-/* SECTIONS */
-section{padding:72px 0}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-.card h3{margin:10px 0 8px}
-.muted{color:var(--muted)}
-.kpi{font-size:48px;font-weight:800}
+    /* ------------------ COURSES SECTION ------------------ */
+    section.courses {
+      padding: 100px 50px;
+    }
+    section.courses h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
+    .course-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .course-card {
+      background: #1f2233;
+      border-radius: 15px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .course-card:hover { background: #32364a; }
+    .course-card h3 { font-size: 22px; margin-bottom: 15px; }
+    .course-card p { font-size: 14px; margin-bottom: 20px; color: #cbd5e1; }
+    .course-card button { width: 100%; }
 
-/* SEARCH */
-.search{display:grid;grid-template-columns:320px 1fr;gap:22px}
-.filters{background:var(--card-2);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:18px}
-.input, select{width:100%;background:#0b1430;color:var(--text);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;margin-top:8px}
-.list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.worker{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start}
-.avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#60a5fa,#a78bfa);display:grid;place-items:center;font-weight:800}
-.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;font-size:12px}
+    /* ------------------ SERVICES SECTION ------------------ */
+    section.services {
+      padding: 100px 50px;
+      background: #0b0d23;
+    }
+    section.services h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: #1f2233;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      transition: 0.3s;
+    }
+    .service-card:hover { background: #32364a; }
+    .service-card h3 { margin-bottom: 15px; font-size: 22px; }
+    .service-card p { font-size: 14px; color: #cbd5e1; }
 
-/* TESTIMONIALS */
-.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-blockquote{margin:0;padding:18px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:var(--radius)}
-blockquote footer{color:var(--muted);margin-top:10px}
+    /* ------------------ CONTACT SECTION ------------------ */
+    section.contact {
+      padding: 100px 50px;
+      background: #14182f;
+    }
+    section.contact h2 { font-size: 36px; margin-bottom: 50px; text-align: center; }
+    .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .contact-form input, .contact-form textarea {
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      background: #1f2233;
+      color: #fff;
+      font-size: 16px;
+    }
+    .contact-form button { padding: 15px; font-size: 16px; }
 
-/* FOOTER */
-footer{padding:36px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+    /* ------------------ FOOTER ------------------ */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0b0d23;
+      color: #8892b0;
+    }
 
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,10,30,.65);display:none;place-items:center;z-index:100}
-.modal.open{display:grid}
-.sheet{width:min(720px,92%);background:#0b1430;border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow);padding:22px}
-.sheet h2{margin:.2rem 0 0}
-
-@media (max-width: 980px){
-  .hero{grid-template-columns:1fr}
-  .search{grid-template-columns:1fr}
-  .list{grid-template-columns:1fr}
-  .grid-3{grid-template-columns:1fr}
-  .quotes{grid-template-columns:1fr}
-}
-
+    /* ------------------ RESPONSIVE ------------------ */
+    @media(max-width: 900px) {
+      section.hero { flex-direction: column; text-align: center; padding: 150px 20px; }
+      .hero-graphic { margin-top: 50px; }
+      header { flex-direction: column; gap: 20px; }
+      nav ul { flex-direction: column; gap: 10px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ------------------ HEADER ------------------ -->
   <header>
-    <div class="container nav">
-      <a class="brand" href="#"><div class="logo"><span>🤝</span></div> Help Haath</a>
-      <nav class="links">
-        <a href="#how">How it Works</a>
-        <a href="#benefits">Benefits</a>
-        <a href="#search">Find Workers</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="actions">
-        <button class="btn btn-ghost" id="btn-login">Sign In</button>
-        <button class="btn btn-primary" id="btn-join">Join as Worker</button>
+    <div class="logo">Help Haath</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-buttons">
+      <button class="btn-secondary" onclick="alert('Sign Up / Login functionality coming soon!')">Sign Up</button>
+      <button class="btn-primary">Login</button>
+    </div>
+  </header>
+
+  <!-- ------------------ HERO SECTION ------------------ -->
+  <section class="hero" id="home">
+    <div class="hero-text">
+      <h1>Transform Hard Work Into Smart Work</h1>
+      <p>Learn how to maximize productivity and achieve your goals efficiently.</p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="alert('Get Started clicked!')">Get Started</button>
+        <button class="btn-secondary" onclick="alert('Join as Worker clicked!')">Join as Worker</button>
       </div>
     </div>
-  </header>  <main class="container">
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Direct. Fair. Secure.</span>
-        <h1>Transform Hard Work<br/>Into <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Smart Work</span></h1>
-        <p class="sub">Maximize productivity and achieve your goals efficiently. Post tasks, connect with verified workers, and pay securely—without middlemen.</p>
-        <div class="cta">
-          <a href="#search" class="btn btn-primary">Get Started</a>
-          <button class="btn btn-ghost" id="btn-service">I’m a Service Taker</button>
-        </div>
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-          <span class="pill">🔒 Escrow-ready (placeholder)</span>
-          <span class="pill">⚡ Instant notifications</span>
-          <span class="pill">✅ Verified profiles</span>
-        </div>
+    <div class="hero-graphic">
+      <img src="https://cdn-icons-png.flaticon.com/512/2910/2910763.png" alt="Working Graphic">
+    </div>
+  </section>
+
+  <!-- ------------------ OFFER SECTION ------------------ -->
+  <section class="offer">
+    <div class="offer-box">
+      <h2>Special Offer</h2>
+      <p>Sign up today and get exclusive access to our premium courses and services!</p>
+      <button class="btn-primary" onclick="alert('Offer Applied!')">Claim Now</button>
+    </div>
+  </section>
+
+  <!-- ------------------ COURSES SECTION ------------------ -->
+  <section class="courses" id="courses">
+    <h2>Our Courses</h2>
+    <div class="course-container">
+      <div class="course-card">
+        <h3>Productivity Mastery</h3>
+        <p>Learn to work smarter, not harder with proven productivity hacks.</p>
+        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
       </div>
-      <div class="ill-wrap">
-        <div class="blob" aria-hidden="true"></div>
-        <div class="ill">
-          <!-- Hero illustration placeholder (SVG) -->
-          <img alt="Illustration of collaboration" src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200&auto=format&fit=crop" />
-        </div>
+      <div class="course-card">
+        <h3>Time Management Pro</h3>
+        <p>Manage your time efficiently and achieve your daily goals without stress.</p>
+        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
       </div>
-    </section><!-- HOW IT WORKS -->
-<section id="how">
-  <h2>How Help Haath Works</h2>
-  <p class="muted">Three simple steps for workers and service takers.</p>
-  <div class="grid-3" style="margin-top:16px">
-    <div class="card">
-      <div class="pill">1 • Post or Offer</div>
-      <h3>Describe the task or your skill</h3>
-      <p class="muted">Add details, budget, and location—or list your skills and availability.</p>
-    </div>
-    <div class="card">
-      <div class="pill">2 • Connect</div>
-      <h3>Chat & confirm in minutes</h3>
-      <p class="muted">Shortlist profiles, agree on scope, and lock the booking.</p>
-    </div>
-    <div class="card">
-      <div class="pill">3 • Done & Paid</div>
-      <h3>Complete with confidence</h3>
-      <p class="muted">Secure payments (placeholder) and transparent ratings keep things fair.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS -->
-<section id="benefits">
-  <h2>Why Choose Help Haath</h2>
-  <div class="grid-3" style="margin-top:16px">
-    <div class="card"><h3>Direct, No Middlemen</h3><p class="muted">Better pay for workers, better prices for service takers.</p></div>
-    <div class="card"><h3>Verified & Transparent</h3><p class="muted">Profile checks and public ratings build trust from day one.</p></div>
-    <div class="card"><h3>Designed for Speed</h3><p class="muted">Smart search, themes by day, and batch booking features.</p></div>
-  </div>
-</section>
-
-<!-- SEARCH / DIRECTORY -->
-<section id="search">
-  <h2>Find a Worker</h2>
-  <div class="search" style="margin-top:10px">
-    <aside class="filters">
-      <label>What do you need?
-        <input class="input" id="filter-skill" placeholder="e.g., Electrician, Cleaner, Tutor" />
-      </label>
-      <label style="display:block;margin-top:12px">City/Area
-        <input class="input" id="filter-city" placeholder="e.g., Bengaluru, Andheri" />
-      </label>
-      <label style="display:block;margin-top:12px">Budget (₹)
-        <select id="filter-budget">
-          <option value="any">Any</option>
-          <option value="low">Under 500</option>
-          <option value="mid">500–1500</option>
-          <option value="high">1500+</option>
-        </select>
-      </label>
-      <button class="btn btn-primary" style="width:100%;margin-top:12px" id="btn-apply">Apply Filters</button>
-    </aside>
-    <div class="list" id="worker-list">
-      <!-- Cards rendered by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section>
-  <h2>What People Say</h2>
-  <div class="quotes" style="margin-top:12px">
-    <blockquote>“Booked a reliable pro in 10 minutes. Smooth experience!”<footer>— Service Taker</footer></blockquote>
-    <blockquote>“I earn more without middlemen. Instant bookings!”<footer>— Worker</footer></blockquote>
-    <blockquote>“Simple, fair, and fast. Exactly what I needed.”<footer>— Service Taker</footer></blockquote>
-  </div>
-</section>
-
-  </main>  <footer id="contact">
-    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
-      <div>© <span id="year"></span> Help Haath. All rights reserved.</div>
-      <div class="muted">Contact: support@helphaath.example • Instagram: @helphaath</div>
-    </div>
-  </footer>  <!-- MODALS -->  <div class="modal" id="modal-worker" aria-hidden="true">
-    <div class="sheet">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <h2>Join as Worker</h2>
-        <button class="btn btn-ghost" data-close>Close</button>
-      </div>
-      <p class="muted">Register in under 3 minutes. Build your profile and start getting bookings.</p>
-      <div class="grid-3">
-        <a class="card" href="https://forms.gle/3ex2CTXDcrNmECKV7" target="_blank" rel="noopener">
-          <h3>Worker Registration (Google Form)</h3>
-          <p class="muted">Official sign-up link. Add your skills, city, and availability.</p>
-          <span class="pill">Opens in new tab ↗</span>
-        </a>
-        <div class="card">
-          <h3>Profile Tips</h3>
-          <ul class="muted">
-            <li>Use a clear photo & skill headline</li>
-            <li>Add 3–5 recent jobs or experience</li>
-            <li>Set your service areas & timings</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Next: Get Verified</h3>
-          <p class="muted">ID & phone verification (placeholder). Verification boosts trust and bookings.</p>
-        </div>
+      <div class="course-card">
+        <h3>Skill Development</h3>
+        <p>Upgrade your skills to enhance career growth and productivity.</p>
+        <button class="btn-primary" onclick="alert('Course Purchased!')">Attend / Buy</button>
       </div>
     </div>
-  </div>  <div class="modal" id="modal-service" aria-hidden="true">
-    <div class="sheet">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <h2>I’m a Service Taker</h2>
-        <button class="btn btn-ghost" data-close>Close</button>
+  </section>
+
+  <!-- ------------------ SERVICES SECTION ------------------ -->
+  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-card">
+        <h3>Consulting</h3>
+        <p>Professional consulting to boost your business and personal growth.</p>
       </div>
-      <p class="muted">Post a task and receive responses quickly. You can also search and book directly.</p>
-      <div class="grid-3">
-        <a class="card" href="#search">
-          <h3>Search & Book</h3>
-          <p class="muted">Use filters to find the right worker by skill, city, and budget.</p>
-        </a>
-        <div class="card">
-          <h3>Post a Task (Placeholder)</h3>
-          <p class="muted">Coming soon: simple form to post your task and receive offers.</p>
-          <button class="btn btn-primary">Create Task</button>
-        </div>
-        <div class="card">
-          <h3>Secure Payments (Placeholder)</h3>
-          <p class="muted">Hold funds safely until the job is done. Releases instantly on completion.</p>
-        </div>
+      <div class="service-card">
+        <h3>Workshops</h3>
+        <p>Interactive workshops to enhance practical skills and productivity.</p>
+      </div>
+      <div class="service-card">
+        <h3>Online Courses</h3>
+        <p>Learn from industry experts with online courses available anytime.</p>
       </div>
     </div>
-  </div>  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+  </section>
 
-    // Simple fake data for directory
-    const data = [
-      { name:'Alex P.', skill:'Electrician', city:'Pune', price:1200, rating:4.9 },
-      { name:'Sam K.', skill:'Cleaner', city:'Mumbai', price:600, rating:4.7 },
-      { name:'Lee R.', skill:'Carpenter', city:'Delhi', price:1500, rating:4.8 },
-      { name:'Pat T.', skill:'Tutor (Math)', city:'Bengaluru', price:800, rating:4.6 },
-      { name:'Jordan C.', skill:'Plumber', city:'Mumbai', price:1300, rating:4.9 },
-      { name:'Taylor N.', skill:'Painter', city:'Noida', price:1100, rating:4.5 }
-    ];
+  <!-- ------------------ CONTACT SECTION ------------------ -->
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form" onsubmit="handleContact(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </section>
 
-    const list = document.getElementById('worker-list');
-    const render = (rows)=>{
-      list.innerHTML = rows.map(r=>`
-        <article class="worker">
-          <div class="avatar">${r.skill[0]}</div>
-          <div>
-            <h3 style="margin:0">${r.name}</h3>
-            <p class="muted" style="margin:.2rem 0 .6rem 0">${r.skill} • ${r.city}</p>
-            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-              <span class="pill">₹${r.price}</span>
-              <span class="pill">⭐ ${r.rating}</span>
-              <button class="btn btn-primary" onclick="alert('Booking placeholder')">Book</button>
-            </div>
-          </div>
-        </article>
-      `).join('');
-    };
-    render(data);
+  <!-- ------------------ FOOTER ------------------ -->
+  <footer>
+    &copy; 2025 Help Haath. All rights reserved.
+  </footer>
 
-    // Filters
-    document.getElementById('btn-apply').addEventListener('click',()=>{
-      const s = document.getElementById('filter-skill').value.trim().toLowerCase();
-      const c = document.getElementById('filter-city').value.trim().toLowerCase();
-      const b = document.getElementById('filter-budget').value;
-      const rows = data.filter(r=>
-        (!s || r.skill.toLowerCase().includes(s)) &&
-        (!c || r.city.toLowerCase().includes(c)) &&
-        (b==='any' || (b==='low' && r.price<500) || (b==='mid' && r.price>=500 && r.price<=1500) || (b==='high' && r.price>1500))
-      );
-      render(rows);
-    });
-
-    // Modals
-    const open = id => document.getElementById(id).classList.add('open');
-    const closeAll = () => document.querySelectorAll('.modal').forEach(m=>m.classList.remove('open'));
-    document.getElementById('btn-join').addEventListener('click',()=>open('modal-worker'));
-    document.getElementById('btn-service').addEventListener('click',()=>open('modal-service'));
-    document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeAll));
-    document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{ if(e.target===m) closeAll(); }));
-
-    // Sign in (placeholder)
-    document.getElementById('btn-login').addEventListener('click',()=>alert('Authentication placeholder'));
-  </script></body>
+  <!-- ------------------ JS FUNCTIONS ------------------ -->
+  <script>
+    function handleContact(e) {
+      e.preventDefault();
+      alert('Thank you for contacting us! We will reach you shortly.');
+      e.target.reset();
+    }
+  </script>
+</body>
 </html>

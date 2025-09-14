@@ -4,421 +4,118 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>HelpHaath — Work Wise. Live Proud.</title>
-  <meta name="description" content="HelpHaath — connecting trusted local workers with service takers. E-book, courses, and community for creators." />
-  <link rel="icon" href="logo.png" />
-
-  <!-- Google font -->
+  <link rel="icon" href="logo.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <!-- Simple reset + styles (embedded so it's one file) -->
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#ffffff;
-      --accent:#4B7BEC; /* adjust to your brand blue */
-      --accent-2:#1abc9c;
-      --muted:#6b7280;
-      --glass: rgba(255,255,255,0.06);
-      --radius:14px;
-      --shadow: 0 8px 30px rgba(2,6,23,0.4);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Montserrat',system-ui,Arial;
-      background: linear-gradient(180deg,#071028 0%, #08203a 100%);
-      color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-    }
-    a{color:inherit;text-decoration:none}
-    .container{width:100%;max-width:1100px;margin:0 auto;padding:0 20px}
-
-    /* NAV */
-    header.nav{
-      position:sticky;top:0;z-index:60;
-      background:linear-gradient(90deg, rgba(7,16,40,0.55), rgba(7,16,40,0.45));
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:44px;border-radius:8px}
-    .brand h1{font-size:18px;margin:0;color:#fff;letter-spacing:0.2px}
-    nav.main-nav{display:flex;gap:18px;align-items:center}
-    nav.main-nav a{color:rgba(230,238,248,0.9);font-weight:600;font-size:14px;padding:6px 10px;border-radius:10px}
-    nav.main-nav a:hover{background:rgba(255,255,255,0.03)}
-    .cta{background:var(--accent);padding:8px 14px;border-radius:10px;color:#fff;font-weight:700;box-shadow:0 6px 18px rgba(75,123,236,0.15)}
-    .secondary-cta{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:#cfe5ff}
-
-    /* HERO */
-    .hero{
-      padding:56px 0 36px;
-      display:grid;
-      grid-template-columns:1fr 420px;
-      gap:30px;
-      align-items:center;
-    }
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius:22px;padding:34px;
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,0.04);
-    }
-    .eyebrow{display:inline-block;background:rgba(255,255,255,0.04);padding:6px 10px;border-radius:999px;font-size:12px;color:#cfe5ff;margin-bottom:12px}
-    .hero h2{font-size:34px;margin:6px 0 12px;color:#fff;line-height:1.05}
-    .hero p.lead{color:var(--muted);margin:0 0 18px;max-width:60%}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn-large{background:linear-gradient(90deg,var(--accent),#6A82FB);padding:12px 18px;border-radius:12px;color:white;font-weight:700;border:none;cursor:pointer}
-    .btn-ghost{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);color:#d8e9ff;background:transparent;cursor:pointer}
-
-    /* hero image card */
-    .hero-visual{display:flex;justify-content:center;align-items:center}
-    .book-mock{width:320px;height:220px;border-radius:12px;background:linear-gradient(180deg,#19457a,#1167b1);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:0 12px 40px rgba(15,25,35,0.6)}
-
-    /* section styles */
-    section.split{padding:44px 0}
-    h3{font-size:22px;margin:0 0 12px;color:#e9f3ff}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);
-      min-height:120px;
-    }
-    .card h4{margin:0 0 8px}
-    .muted{color:var(--muted);font-size:14px}
-
-    /* services grid */
-    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .service{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
-    }
-    .service h4{margin-top:8px}
-    .icon{
-      width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;margin-bottom:10px
-    }
-
-    /* product area */
-    .product-row{display:flex;gap:16px;align-items:center}
-    .product-card{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-    .product-card h4{margin:0 0 8px}
-    .small-muted{font-size:13px;color:var(--muted)}
-
-    /* profile (demo) */
-    .profile-panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03)}
-    .profile-top{display:flex;gap:12px;align-items:center}
-    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(90deg,#2b6fb8,#4b7bec);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px}
-    .profile-name{font-weight:700;font-size:18px}
-    .profile-role{color:var(--muted);font-size:13px}
-    .stats-row{display:flex;gap:8px;margin-top:12px}
-    .stat-pill{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;font-size:13px}
-
-    /* activity list */
-    .activity{margin-top:12px;display:flex;flex-direction:column;gap:8px}
-    .act{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);font-size:14px}
-
-    /* modal */
-    .modal-backdrop{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(3,7,18,0.7);display:flex;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:all .18s}
-    .modal-backdrop.show{opacity:1;pointer-events:all}
-    .modal{background:#071329;padding:18px;border-radius:12px;max-width:520px;width:100%;border:1px solid rgba(255,255,255,0.03)}
-    .modal h4{margin:0 0 8px}
-    .input, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#eaf4ff;margin-bottom:10px}
-    .muted-note{color:var(--muted);font-size:13px}
-
-    /* footer */
-    footer.sitefoot{padding:28px 0;margin-top:28px;border-top:1px solid rgba(255,255,255,0.03);text-align:center;color:var(--muted)}
-    /* responsive */
-    @media(max-width:980px){
-      .hero{grid-template-columns:1fr;gap:18px}
-      .services-grid{grid-template-columns:repeat(2,1fr)}
-      .grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:560px){
-      nav.main-nav{display:none}
-      .product-row{flex-direction:column}
-      .services-grid{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- NAV -->
-  <header class="nav">
-    <div class="container nav-inner">
+  <header class="header">
+    <div class="container header-inner">
       <div class="brand">
-        <img src="logo.png" alt="HelpHaath logo" />
+        <img src="logo.png" alt="HelpHaath logo">
         <h1>HelpHaath</h1>
       </div>
-
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#workwise">WorkWise</a>
-        <a href="#profile" id="nav-profile">Profile</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" id="join-btn" href="#signup">Join</a>
+      <nav class="navlinks" aria-label="main">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#services">Services</a>
+        <a href="workwise.html">WorkWise</a>
+        <a href="service.html">Book Service</a>
+        <a href="worker.html">For Workers</a>
+        <a href="user.html" class="btn">My Profile</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
   <main class="container">
     <section id="home" class="hero">
-      <div class="hero-card">
-        <span class="eyebrow">Files Founder • HelpHaath</span>
-        <h2>Work Wise. Live Proud.<br /><span style="color:#cfe5ff;font-weight:600;font-size:20px">Trusted local workers — global vision.</span></h2>
-        <p class="lead">Get services done fast, safely and directly. Reserve workers, learn skills, or grab the WorkWise system to build your future.</p>
-
+      <div class="card">
+        <div class="eyebrow">Files Founder • HelpHaath</div>
+        <h2>Work Wise. Live Proud.</h2>
+        <p class="lead">Trusted local workers, global vision. Reserve services, pre-order our e-book and join the Files Founder community.</p>
         <div class="hero-actions">
-          <button class="btn-large" id="buy-now">Pre-order WorkWise</button>
-          <button class="btn-ghost" id="open-join">Join Community</button>
+          <button class="btn" onclick="location.href='service.html'">I am a Service Taker</button>
+          <button class="btn-ghost" onclick="location.href='worker.html'">I am a Worker</button>
         </div>
 
-        <p style="margin-top:14px;color:var(--muted);font-size:13px">No bank info needed to explore. Secure checkout link available at launch. Demo profile available below.</p>
-      </div>
-
-      <div class="hero-visual">
-        <div class="book-mock">
-          WORK WISE
-          <div style="font-size:11px;margin-top:8px;opacity:0.95">Step-by-step systems • Templates • Checklists</div>
+        <div class="features" style="margin-top:18px">
+          <div class="feature"><h4>Fast Booking</h4><div class="smallmuted">Find & book verified workers in minutes.</div></div>
+          <div class="feature"><h4>WorkWise System</h4><div class="smallmuted">Pre-order our eBook and get templates + checklists.</div></div>
+          <div class="feature"><h4>Global Ready</h4><div class="smallmuted">Currency auto-detect for international visitors.</div></div>
         </div>
       </div>
-    </section>
 
-    <!-- SERVICES -->
-    <section id="services" class="split">
-      <div class="container">
-        <h3>Services we provide</h3>
-        <p class="muted">Workers and services across categories. Filter by city and skill — coming soon.</p>
-        <div class="services-grid" style="margin-top:14px">
-          <div class="service">
-            <div class="icon">PL</div>
-            <h4>Plumbing</h4>
-            <p class="muted">Fix leaks, installations & fast repairs.</p>
+      <div>
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%">
+          <div style="width:220px;height:140px;border-radius:12px;background:linear-gradient(180deg,#184b80,#1367b1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">
+            WORK WISE
           </div>
-          <div class="service">
-            <div class="icon">CL</div>
-            <h4>Cleaning</h4>
-            <p class="muted">Home/office deep-cleaning & maintenance.</p>
-          </div>
-          <div class="service">
-            <div class="icon">EL</div>
-            <h4>Electrical</h4>
-            <p class="muted">Safe wiring, installations & urgent fixes.</p>
-          </div>
-          <div class="service">
-            <div class="icon">CP</div>
-            <h4>Carpentry</h4>
-            <p class="muted">Furniture, renovations & custom fittings.</p>
+          <p class="smallmuted" style="margin-top:12px" id="currency-note">Prices shown in USD</p>
+          <div style="margin-top:12px">
+            <button class="btn" onclick="document.getElementById('pre-email').focus()">Pre-order WorkWise <span style="font-weight:600;margin-left:8px" data-price-usd="6.5"></span></button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WORKWISE PRODUCT -->
-    <section id="workwise" class="split">
-      <div class="container">
-        <h3>WorkWise — The system</h3>
-        <p class="muted">Short, practical frameworks to work smart, scale your skills and earn more.</p>
+    <section id="services" class="card" style="margin-top:18px">
+      <h3>Services</h3>
+      <p class="smallmuted">Core categories — more will be added. Filter & book workers on the Book Service page.</p>
+      <div class="services-grid" style="margin-top:12px">
+        <div class="service"><div class="icon">PL</div><h4>Plumbing</h4><div class="smallmuted">Fix leaks, installs & emergency repairs.</div></div>
+        <div class="service"><div class="icon">CL</div><h4>Cleaning</h4><div class="smallmuted">Home & office deep cleaning.</div></div>
+        <div class="service"><div class="icon">EL</div><h4>Electrical</h4><div class="smallmuted">Wiring, installs & troubleshooting.</div></div>
+        <div class="service"><div class="icon">CP</div><h4>Carpentry</h4><div class="smallmuted">Furniture, fittings & custom work.</div></div>
+      </div>
+    </section>
 
-        <div class="product-row" style="margin-top:12px">
-          <div class="product-card">
-            <h4>What you get</h4>
-            <ul class="muted">
-              <li>10 step frameworks for daily progress</li>
-              <li>Templates & worksheets (editable)</li>
-              <li>Action plan for 30/60/90 days</li>
-              <li>Access to Files Founder community (early)</li>
-            </ul>
-            <p style="margin-top:12px"><strong>Price: ₹499 (pre-launch)</strong></p>
-            <div style="margin-top:10px">
-              <button class="btn-large" id="product-buy">Pre-order Now</button>
-              <button class="btn-ghost" id="product-demo">Request Demo</button>
-            </div>
-          </div>
+    <section id="prebook" class="card" style="margin-top:18px">
+      <h3>Pre-book / Pre-order</h3>
+      <p class="smallmuted">Reserve upcoming eBooks, events, templates, and product kits. We'll notify you when launch checkout is live.</p>
 
-          <div class="product-card">
-            <h4>Why this works</h4>
-            <p class="muted">Most people fail from lack of systems. WorkWise focuses on small daily habits plus high-leverage actions (time blocks, automations, ROI-first tasks).</p>
-            <div style="margin-top:12px">
-              <p class="small-muted">Early buyers will get a free 30-minute strategy call in launch week.</p>
-            </div>
-          </div>
+      <div class="product-row">
+        <div class="product">
+          <h4>WorkWise eBook (Pre-launch)</h4>
+          <div class="smallmuted">A compact system to work smarter, prioritize ROI and automate small tasks.</div>
+          <p style="margin-top:10px"><strong data-price-usd="6.5"></strong></p>
+          <form id="preorder-form">
+            <label for="pre-email">Email</label>
+            <input id="pre-email" class="input" type="email" required placeholder="you@domain.com"/>
+            <label for="pre-note">Note (what you want from the book)</label>
+            <input id="pre-note" class="input" placeholder="I want templates for scheduling..."/>
+            <button class="btn" type="submit">Reserve My Copy</button>
+          </form>
+        </div>
+
+        <div class="product">
+          <h4>WorkWise Templates Pack</h4>
+          <div class="smallmuted">Editable checklists, time-block templates & automation playbook.</div>
+          <p style="margin-top:10px"><strong data-price-usd="3.5"></strong></p>
+          <div style="margin-top:12px"><button class="btn-ghost" onclick="alert('Coming soon — reserved via pre-order form')">Notify me</button></div>
         </div>
       </div>
     </section>
 
-    <!-- COURSES / MINI-LABS -->
-    <section id="courses" class="split">
-      <div class="container">
-        <h3>Mini-Labs & Courses</h3>
-        <p class="muted">Short practical labs to build high-demand skills (coming soon).</p>
-        <div class="grid" style="margin-top:12px">
-          <div class="card">
-            <h4>Time Block Lab</h4>
-            <p class="muted">Design a 3-hour deep work routine you can follow daily.</p>
-          </div>
-          <div class="card">
-            <h4>Automation Kit</h4>
-            <p class="muted">Tools & templates to automate small repetitive tasks.</p>
-          </div>
-          <div class="card">
-            <h4>ROI Sprint</h4>
-            <p class="muted">Find the highest-ROI tasks in your day & double them.</p>
-          </div>
-        </div>
+    <section id="testimonials" class="card" style="margin-top:18px">
+      <h3>What early users say</h3>
+      <div class="testi">
+        <div class="test-card">“Clear templates — saved me hours.” — A user</div>
+        <div class="test-card">“WorkWise changed how I plan my day.” — B user</div>
+        <div class="test-card">“HelpHaath worker came fast and professional.” — C user</div>
       </div>
     </section>
 
-    <!-- PROFILE DEMO (static demo for now) -->
-    <section id="profile" style="padding-bottom:24px">
-      <div class="container">
-        <h3>Your Profile (Demo)</h3>
-        <p class="muted">This is a demo profile to show how user activity will appear. Later, this will be connected to secure login & database.</p>
-
-        <div class="profile-panel" style="margin-top:12px">
-          <div class="profile-top">
-            <div class="avatar" id="avatar">JS</div>
-            <div>
-              <div class="profile-name" id="profile-name">Guest User</div>
-              <div class="profile-role" id="profile-role">Visitor • Not signed in</div>
-              <div style="margin-top:8px">
-                <button class="btn-large" id="btn-signin">Sign In (Demo)</button>
-                <button class="btn-ghost" id="btn-signout" style="display:none">Sign Out</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="stats-row" id="stats-row" style="margin-top:16px">
-            <div class="stat-pill" id="stat-bookings">Bookings: 0</div>
-            <div class="stat-pill" id="stat-completed">Completed: 0</div>
-            <div class="stat-pill" id="stat-earn">Earnings: ₹0</div>
-          </div>
-
-          <div class="activity" id="activity-list" style="margin-top:14px">
-            <div class="act">No activities yet — pre-launch demo.</div>
-          </div>
-        </div>
-
-        <p style="margin-top:12px;color:var(--muted)">Tip: Click "Sign In (Demo)" to create a local demo profile. This uses your browser only and stores the demo details on your device (safe). When you want real users & security — we can integrate Firebase / Supabase.</p>
-      </div>
+    <section id="follow" class="card" style="margin-top:18px">
+      <h3>Stay connected</h3>
+      <p class="smallmuted">Instagram: <a href="https://www.instagram.com/helphaath/" target="_blank">@helphaath</a></p>
     </section>
 
-    <!-- CONTACT / FOOTER -->
-    <section id="contact" style="padding-bottom:40px">
+    <footer class="footer">
       <div class="container">
-        <h3>Contact & Support</h3>
-        <div style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px">
-          <div style="flex:1;min-width:260px" class="card">
-            <h4>Support</h4>
-            <p class="muted">Questions about WorkWise, early access or partnerships? Email us at <a href="mailto:support@helphaath.github.io" style="color:#bfe0ff">support@helphaath.github.io</a></p>
-          </div>
-          <div style="flex:1;min-width:260px" class="card">
-            <h4>Follow</h4>
-            <p class="muted">Instagram: <a href="https://www.instagram.com/helphaath/" target="_blank" style="color:#bfe0ff">@helphaath</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="sitefoot">
-      <div class="container">
-        <div style="margin-bottom:10px">© <strong>HelpHaath</strong> 2025 • Work Wise • Files Founder</div>
-        <div style="font-size:13px;color:var(--muted)">Privacy • Terms • Contact</div>
+        <div>© HelpHaath 2025 • Work Wise • Files Founder</div>
       </div>
     </footer>
   </main>
 
-  <!-- Modal (Pre-order / join) -->
-  <div id="modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <h4 id="modal-title">Pre-order WorkWise (Early Access)</h4>
-      <p class="muted-note">Enter your email to reserve your copy. We will notify you with the secure checkout link. No payment is taken yet.</p>
-      <input id="email-input" class="input" type="email" placeholder="Your email address" />
-      <textarea id="note-input" class="input" rows="3" placeholder="(optional) Tell us what you want to learn"></textarea>
-      <div style="display:flex;gap:10px;justify-content:flex-end">
-        <button class="btn-ghost" id="modal-close">Cancel</button>
-        <button class="btn-large" id="modal-submit">Reserve My Copy</button>
-      </div>
-      <p id="modal-msg" style="margin-top:8px;color:var(--muted);font-size:13px"></p>
-    </div>
-  </div>
-
-  <!-- Small inline JS to handle demo profile + modal + localStorage -->
-  <script>
-    // Elements
-    const modal = document.getElementById('modal');
-    const buyNow = document.getElementById('buy-now');
-    const openJoin = document.getElementById('open-join');
-    const modalClose = document.getElementById('modal-close');
-    const modalSubmit = document.getElementById('modal-submit');
-    const emailInput = document.getElementById('email-input');
-    const noteInput = document.getElementById('note-input');
-    const modalMsg = document.getElementById('modal-msg');
-
-    // Demo profile elements
-    const btnSignin = document.getElementById('btn-signin');
-    const btnSignout = document.getElementById('btn-signout');
-    const profileName = document.getElementById('profile-name');
-    const profileRole = document.getElementById('profile-role');
-    const avatar = document.getElementById('avatar');
-    const statBookings = document.getElementById('stat-bookings');
-    const statCompleted = document.getElementById('stat-completed');
-    const statEarn = document.getElementById('stat-earn');
-    const activityList = document.getElementById('activity-list');
-
-    // Show modal
-    function openModal(){ modal.classList.add('show'); }
-    function closeModal(){ modal.classList.remove('show'); modalMsg.textContent=''; }
-
-    // Pre-order modal flow (no bank info)
-    buyNow.addEventListener('click', openModal);
-    document.getElementById('product-buy').addEventListener('click', openModal);
-    openJoin.addEventListener('click', () => { alert('Join Files Founder community: DM CREATE on Instagram'); });
-
-    modalClose.addEventListener('click', closeModal);
-
-    modalSubmit.addEventListener('click', () => {
-      const email = emailInput.value.trim();
-      if(!email || !email.includes('@')){ modalMsg.textContent = 'Please enter a valid email.'; return; }
-      // Save to localStorage (demo). Replace this with API call to your backend or mailing service (Mailchimp/Gumroad) later.
-      const list = JSON.parse(localStorage.getItem('hh_preorder')||'[]');
-      list.push({email, note: noteInput.value||'', at: new Date().toISOString()});
-      localStorage.setItem('hh_preorder', JSON.stringify(list));
-      modalMsg.textContent = 'Thank you! You are reserved. We will notify you when checkout is ready.';
-      emailInput.value = ''; noteInput.value = '';
-      setTimeout(closeModal, 1400);
-    });
-
-    // Demo sign in (local profile)
-    function renderProfile(){
-      const user = JSON.parse(localStorage.getItem('hh_user') || 'null');
-      if(!user){
-        profileName.textContent = 'Guest User';
-        profileRole.textContent = 'Visitor • Not signed in';
-        avatar.textContent = 'JS';
-        btnSignin.style.display = 'inline-block';
-        btnSignout.style.display = 'none';
-        statBookings.textContent = 'Bookings: 0';
-        statCompleted.textContent = 'Completed: 0';
-        statEarn.textContent = 'Earnings: ₹0';
-        activityList.innerHTML = '<div class="act">No activities yet — pre-launch demo.</div>';
-        return;
-      }
-      // render actual demo profile
-      profileName.textContent = user.name || 'John Doe';
-      profileRole.textContent = user.role || 'Worker';
-      avatar.textContent = (user.name||'User').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase();
-      btnSignin.style.display = 'none';
-      btnSignout.style.display = 'inline-block';
-      statBookings.textContent = 'Bookings: ' + (user.bookings || 3);
-      statCompleted.textContent = 'Completed: ' + (user.completed || 2);
-      statEarn.textContent = 'Earnings: ₹' + (user.earnings || 4500);
-      // activities
-      const acts = user.activities || [
-        '✔️ Plumbing job completed – 2025-02-25',
-        '📌 New booking received – 2025-02-27'
+  <script src="script.js"></script>
+</body>
+</html>

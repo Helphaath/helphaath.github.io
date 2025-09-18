@@ -1,75 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Help Haath - Worker</title>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e3f2fd, #90caf9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .container {
-      max-width: 600px;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      text-align: center;
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1 {
-      color: #1976d2;
-      margin-bottom: 20px;
-    }
-
-    p {
-      color: #555;
-      font-size: 16px;
-      margin-bottom: 25px;
-    }
-
-    .btn {
-      padding: 12px 28px;
-      background: linear-gradient(45deg, #00bcd4, #2196f3);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: transform 0.2s, box-shadow 0.3s;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        width: 90%;
-        padding: 20px;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HelpHaath — For Workers</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome, Worker!</h1>
-    <p>Thank you for choosing Help Haath. Click the button below to register yourself as a worker.</p>
-    <a href="https://forms.gle/3ex2CTXDcrNmECKV7" class="btn">Register as Worker</a>
-  </div>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand"><img src="logo.png" alt=""><h1>HelpHaath</h1></div>
+      <nav class="navlinks"><a href="index.html">Home</a><a href="service.html">Book Service</a><a href="preorder.html">Pre-order</a><a href="user.html" class="btn">My Profile</a></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:28px">
+    <section class="card">
+      <h3>Worker Sign Up (Demo)</h3>
+      <p class="smallmuted">Create a demo worker profile stored locally. Real signup will be handled via backend later.</p>
+      <div style="margin-top:8px">
+        <button class="btn" id="btn-signin-demo">Create Demo Profile</button>
+        <button class="btn-ghost" id="btn-signout-demo" style="display:none">Sign Out</button>
+      </div>
+
+      <div style="margin-top:16px" id="worker-demo-panel">
+        <h4>Worker Dashboard (Demo)</h4>
+        <div class="profile-panel" style="margin-top:8px">
+          <div class="avatar" id="profile-avatar">GH</div>
+          <div class="profile-meta">
+            <div id="profile-name">Guest</div>
+            <div id="profile-role" class="smallmuted">Not signed in</div>
+            <div class="stat-row" style="margin-top:10px">
+              <div class="stat" id="profile-bookings">Bookings: 0</div>
+              <div class="stat" id="profile-completed">Completed: 0</div>
+              <div class="stat" id="profile-earnings">Earnings: -</div>
+            </div>
+            <div class="activity" id="profile-activities" style="margin-top:10px"><div class="act">No activities</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© HelpHaath 2025</div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

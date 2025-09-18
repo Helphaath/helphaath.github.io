@@ -19,7 +19,7 @@
   <main class="container" style="padding-top:28px">
     <section class="card">
       <h3>My Profile</h3>
-      <p class="smallmuted">This is a local demo profile. Sign in to experience profile features. (Will be replaced with secure auth later.)</p>
+      <p class="smallmuted">This is a local demo profile — saved in your browser. We'll replace with secure auth later.</p>
 
       <div class="profile-panel" style="margin-top:12px">
         <div class="avatar" id="profile-avatar">GH</div>
@@ -33,7 +33,7 @@
           </div>
 
           <div style="margin-top:12px">
-            <label for="upload-photo" class="smallmuted">Upload profile photo (demo)</label>
+            <label class="smallmuted">Upload profile photo (demo)</label>
             <input id="upload-photo" type="file" accept="image/*" class="input" />
             <button class="btn" id="btn-save-profile">Save Profile</button>
             <button class="btn-ghost" id="btn-signin-demo">Sign In (Demo)</button>
@@ -64,39 +64,39 @@
   </main>
 
   <script>
-    // small helper to render wishlist & preorders in profile page
-    function renderProfileExtras(){
-      // orders
+    // small inline helper for user page (photo, save, render preorders)
+    function renderProfileExtrasLocal(){ 
+      // orders & wishlist & preorders handled by script.js functions
       const orders = JSON.parse(localStorage.getItem('hh_bookings')||'[]');
       const el = document.getElementById('orders-list');
-      el.innerHTML = orders.length ? orders.map(o=>`<div class="act">${o.workerName} • ${o.date} • ${o.status} • ${hh.formatPrice(o.priceUSD)}</div>`).join('') : '<div class="act">No orders yet</div>';
-
-      // wishlist
+      el && (el.innerHTML = orders.length ? orders.map(o=>`<div class="act">${o.workerName} • ${o.date} • ${o.status} • ${hh.formatPrice(o.priceUSD)}</div>`).join('') : '<div class="act">No orders yet</div>');
       const wish = JSON.parse(localStorage.getItem('hh_wishlist')||'[]');
       const wEl = document.getElementById('wishlist-list');
-      if(!wish || wish.length===0){ wEl.innerHTML = '<div class="act">No wishlist items</div>'; }
-      else {
-        const items = wish.map(id => {
-          const wk = (window.workers||[]).find(x=>x.id===id);
-          if(!wk) return '';
-          return `<div class="act">${wk.name} — ${wk.skill} — ${hh.formatPrice(wk.priceUSD)}</div>`;
-        }).join('');
-        wEl.innerHTML = items;
+      if(wEl){ 
+        if(!wish || wish.length===0) wEl.innerHTML = '<div class="act">No wishlist items</div>';
+        else {
+          const items = wish.map(id => {
+            const wk = (window.workers||[]).find(x=>x.id===id);
+            if(!wk) return '';
+            return `<div class="act">${wk.name} — ${wk.skill} — ${hh.formatPrice(wk.priceUSD)}</div>`;
+          }).join('');
+          wEl.innerHTML = items;
+        }
       }
-
-      // preorders
       const pre = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
       const pEl = document.getElementById('preorders-list');
-      pEl.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No preorders</div>';
+      pEl && (pEl.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No preorders</div>');
     }
 
-    // upload photo (demo only)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      renderProfileExtrasLocal();
+    });
+
     document.getElementById('upload-photo') && document.getElementById('upload-photo').addEventListener('change', function(e){
       const f = e.target.files[0];
       if(!f) return;
       const reader = new FileReader();
       reader.onload = function(ev){
-        // store base64 in localStorage (demo)
         const user = JSON.parse(localStorage.getItem('hh_user')||'null') || {name:'Guest',role:'Visitor'};
         user.photo = ev.target.result;
         localStorage.setItem('hh_user', JSON.stringify(user));
@@ -106,7 +106,6 @@
       reader.readAsDataURL(f);
     });
 
-    // save profile (demo)
     document.getElementById('btn-save-profile') && document.getElementById('btn-save-profile').addEventListener('click', ()=>{
       const user = JSON.parse(localStorage.getItem('hh_user')||'null');
       if(!user){ alert('Sign in first (Demo)'); return; }
@@ -117,15 +116,8 @@
       alert('Profile saved locally (demo)');
       location.reload();
     });
-
-    // init profile extras
-    document.addEventListener('DOMContentLoaded', ()=>{
-      renderProfileExtras();
-      // if hh present, render some items
-      if(window.hh) { /* hh.renderProfilePanel(); hh.renderBookingsDashboard(); */ }
-    });
   </script>
 
   <script src="script.js"></script>
 </body>
-  </html>
+</html>

@@ -1,109 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Help Haath - Service Taker</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #d1e4f6, #f3f9fe);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background: linear-gradient(45deg, #00bcd4, #2196f3);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 1.8em;
-      font-weight: bold;
-    }
-
-    .container {
-      flex: 1;
-      padding: 30px 20px;
-      max-width: 900px;
-      margin: auto;
-      background: #ffffffcc;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      animation: fadeInUp 1s ease;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      color: #1a237e;
-    }
-
-    .btn {
-      display: inline-block;
-      margin: 12px;
-      padding: 14px 30px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      color: white;
-      background: linear-gradient(45deg, #00bcd4, #2196f3);
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
-    }
-
-    footer {
-      background: #f1f1f1;
-      padding: 10px;
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .btn {
-        width: 100%;
-        margin: 10px 0;
-      }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Book a Service — HelpHaath</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    Help Haath - Service Taker Dashboard
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand"><img src="logo.png" alt=""><h1>HelpHaath</h1></div>
+      <nav class="navlinks"><a href="index.html">Home</a><a href="preorder.html">Pre-order</a><a href="worker.html">For Workers</a><a href="user.html" class="btn">My Profile</a></nav>
+    </div>
   </header>
 
-  <div class="container">
-    <h2>Find a Trusted Worker</h2>
-    <p>Choose a service or make a booking:</p>
+  <main class="container" style="padding-top:28px">
+    <section class="card">
+      <h3>Book a Service</h3>
+      <p class="smallmuted">Search workers by skill or city, check estimated price and book. (Demo: bookings stored locally.)</p>
 
-    <a href="https://forms.gle/8CVBbL3m6szMurGq7" class="btn">Book a Service</a>
-    <a href="#" class="btn">Make Payment</a>
+      <div class="search-bar">
+        <input id="search-q" class="input" placeholder="Search by name or skill..." />
+        <input id="filter-city" class="input" placeholder="City (optional)" />
+        <input id="filter-skill" class="input" placeholder="Skill (optional)" />
+        <button class="btn" onclick="hh.filterWorkers()">Search</button>
+      </div>
 
-    <p style="margin-top: 20px;">🔍 Advanced worker search and live chat coming soon!</p>
-  </div>
+      <div id="worker-list" class="worker-list" style="margin-top:12px"></div>
 
-  <footer>
-    © 2025 Help Haath | All rights reserved.
-  </footer>
+      <section style="margin-top:16px">
+        <h4>Your Orders</h4>
+        <div id="orders-list" style="margin-top:8px"></div>
+      </section>
+    </section>
+
+    <footer class="footer">
+      <div class="container">© HelpHaath 2025</div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>

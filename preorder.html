@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pre-order — HelpHaath</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand"><img src="logo.png" alt=""><h1>HelpHaath</h1></div>
+      <nav class="navlinks"><a href="index.html">Home</a><a href="service.html">Book Service</a><a href="worker.html">For Workers</a><a href="user.html" class="btn">My Profile</a></nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:28px">
+    <section class="card">
+      <h3>Pre-order / Reserve</h3>
+      <p class="smallmuted">Reserve upcoming items (eBooks, templates, workshops). We'll notify you when checkout is live.</p>
+
+      <div class="product-row" style="margin-top:12px">
+        <div class="product">
+          <h4>WorkWise eBook (Pre-launch)</h4>
+          <p class="smallmuted">Step-by-step systems, templates, checklists.</p>
+          <p style="margin-top:10px"><strong data-price-usd="6.5"></strong></p>
+          <form id="preorder-form">
+            <label for="pre-email">Email</label>
+            <input id="pre-email" class="input" type="email" required placeholder="you@domain.com"/>
+            <label for="pre-item">Item</label>
+            <select id="pre-item" class="input"><option>WorkWise eBook</option><option>Templates Pack</option><option>Workshop Seat</option></select>
+            <label for="pre-note">Note (optional)</label>
+            <textarea id="pre-note" class="input" rows="3" placeholder="What do you want from this product?"></textarea>
+            <button class="btn" type="submit">Reserve</button>
+          </form>
+        </div>
+
+        <div class="product">
+          <h4>Why reserve?</h4>
+          <div class="smallmuted">Early buyers get discounted pricing, first access to templates, and invites to special Q&A sessions.</div>
+          <div style="margin-top:12px">
+            <h4>Reserved list</h4>
+            <div id="reserved-list" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">© HelpHaath 2025</footer>
+  </main>
+
+  <script>
+    // show reserved list
+    function renderReservedList(){
+      const pre = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
+      const el = document.getElementById('reserved-list');
+      el && (el.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${p.country} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No reservations yet</div>');
+    }
+    document.addEventListener('DOMContentLoaded', renderReservedList);
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

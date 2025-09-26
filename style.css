@@ -1,93 +1,35 @@
-/* style.css - HelpHaath global styles (modern, responsive)
-   Keep this file next to all HTML files
-*/
+/* style.css - HelpHaath theme (copy to style.css) */
 :root{
-  --bg-1:#071329; --bg-2:#082a4a; --card:#0f2b45;
-  --accent:#1e8be6; --accent-2:#13b89a; --muted:#9fb3c8;
-  --text:#e6f4ff; --glass:rgba(255,255,255,0.03);
-  --radius:12px; --shadow:0 10px 30px rgba(3,10,18,0.55);
-  --max-width:1120px;
-  font-family: "Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  --bg:#061226; --panel:#0f2b45; --accent:#2f7ff3; --accent2:#13b89a;
+  --muted:#9fb3c8; --text:#eaf4ff; --glass:rgba(255,255,255,0.03);
+  --card-radius:12px; --shadow:0 10px 30px rgba(3,10,18,0.55); --maxw:1100px;
+  font-family: 'Montserrat', system-ui, Arial, Helvetica, sans-serif;
 }
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-.container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
-
-/* header */
-.header{position:sticky;top:0;z-index:80;background:linear-gradient(180deg,rgba(2,8,20,0.6),rgba(2,8,20,0.35));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#05102a);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--maxw);margin:0 auto;padding:20px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
 .brand{display:flex;align-items:center;gap:12px}
-.brand img{width:44px;height:44px;border-radius:10px}
-.brand h1{font-size:18px;margin:0}
-.navlinks{display:flex;gap:12px;align-items:center}
-.navlinks a{font-weight:600;padding:8px 10px;border-radius:8px;color:rgba(226,244,255,0.9)}
-.navlinks a:hover{background:rgba(255,255,255,0.03)}
-.btn{background:linear-gradient(90deg,var(--accent),#6fa8ff);padding:10px 14px;border-radius:10px;font-weight:700;border:none;color:#fff;cursor:pointer}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--text);cursor:pointer}
-
-/* hero */
-.hero{display:grid;grid-template-columns:1fr 420px;gap:22px;align-items:start;padding:44px 0}
-.card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:20px;border-radius:16px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.03)}
-.eyebrow{display:inline-block;background:rgba(255,255,255,0.04);padding:6px 10px;border-radius:999px;font-size:12px;color:#cfe5ff;margin-bottom:12px}
-.hero h2{font-size:30px;margin:6px 0 12px}
-.lead{color:var(--muted);margin:0 0 12px}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
-
-/* grids */
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.feature{padding:12px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-.service{padding:12px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-.service .icon{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
-
-/* product row */
-.product-row{display:flex;gap:12px;align-items:stretch;margin-top:12px}
-.product{flex:1;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-.smallmuted{color:var(--muted);font-size:13px}
-
-/* testimonials & footer */
-.testi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.test-card{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
-.footer{padding:20px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03);margin-top:18px}
-
-/* forms */
-.input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-bottom:10px}
-label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-
-/* profile */
-.profile-panel{display:flex;gap:14px;align-items:flex-start;padding:12px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-.avatar{width:84px;height:84px;border-radius:12px;background:linear-gradient(90deg,#2b6fb8,#4b7bec);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px}
-.profile-meta{flex:1}
-.stat-row{display:flex;gap:8px;margin-top:10px}
-.stat{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:10px;font-size:13px}
-
-/* activity list */
-.activity{margin-top:12px;display:flex;flex-direction:column;gap:8px}
-.act{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
-
-/* worker list */
-.search-bar{display:flex;gap:8px;margin-top:10px}
-.worker-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-.worker{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-
-/* modal */
-.modal-backdrop{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(3,7,18,0.7);display:flex;align-items:center;justify-content:center;z-index:200;opacity:0;pointer-events:none;transition:all .18s}
-.modal-backdrop.show{opacity:1;pointer-events:all}
-.modal{background:#071329;padding:18px;border-radius:12px;max-width:560px;width:100%;border:1px solid rgba(255,255,255,0.03)}
-
-/* responsive */
-@media(max-width:980px){
-  .hero{grid-template-columns:1fr;gap:16px}
-  .features{grid-template-columns:repeat(2,1fr)}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  .testi{grid-template-columns:repeat(2,1fr)}
-  .worker-list{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:560px){
-  .features{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:1fr}
-  .testi{grid-template-columns:1fr}
-  .worker-list{grid-template-columns:1fr}
-  .navlinks{display:none}
-}
+.brand img{width:48px;height:48px;border-radius:8px;object-fit:cover}
+h1,h2,h3,h4{margin:6px 0}
+.lead{color:var(--muted);margin:6px 0 14px}
+.btn{background:linear-gradient(90deg,var(--accent),#69a8ff);padding:10px 14px;border-radius:10px;border:none;color:#fff;font-weight:700;cursor:pointer}
+.btn-ghost{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);cursor:pointer}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:16px; border-radius:var(--card-radius); box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.03)}
+.row{display:flex;gap:12px;align-items:center}
+.hero{display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start}
+@media(max-width:980px){ .hero{grid-template-columns:1fr} .header nav{display:none} }
+.small{font-size:13px;color:var(--muted)}
+.price{font-weight:800;font-size:20px}
+.input, select, textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);margin-bottom:10px}
+.pricing-cards{display:flex;gap:12px;margin-top:12px}
+.pricing-card{flex:1;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+.footer{margin-top:18px;padding:18px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03);text-align:center}
+.notice{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
+.small-muted{color:var(--muted);font-size:13px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){ .grid-2{grid-template-columns:1fr} }
+.avatar{width:84px;height:84px;border-radius:12px;background:linear-gradient(90deg,#2b6fb8,#4b7bec);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.badge{display:inline-block;background:#ff6b6b;padding:6px 8px;border-radius:999px;color:#fff;font-weight:700;margin-left:8px}
+.card-scroll{max-height:340px;overflow:auto;padding-right:6px}
+.contact-card{display:flex;flex-direction:column;gap:6px;border-radius:10px;padding:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}

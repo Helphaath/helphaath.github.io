@@ -2,65 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>HelpHaath — WorkWise eBook</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pre-order — HelpHaath</title>
-  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; margin:0; background:#f7f9fc; color:#222; }
+    .container { max-width:1100px; margin:auto; padding:20px; }
+    .header, .footer { display:flex; justify-content:space-between; align-items:center; padding:15px 0; }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand img { width:40px; }
+    .btn, .btn-ghost { padding:10px 18px; border-radius:6px; font-weight:600; cursor:pointer; border:none; }
+    .btn { background:#2a6ef0; color:#fff; }
+    .btn:hover { background:#1f55b3; }
+    .btn-ghost { background:#fff; border:1px solid #ccc; color:#222; }
+    .card { background:#fff; border-radius:10px; padding:20px; box-shadow:0 3px 8px rgba(0,0,0,0.08); margin-bottom:20px; }
+    .hero { display:flex; flex-wrap:wrap; gap:20px; }
+    .hero-left { flex:2; }
+    .hero-right { flex:1; }
+    .price { font-size:22px; font-weight:700; margin-bottom:8px; }
+    .small-muted { font-size:13px; color:#555; }
+    .notice { font-size:13px; padding:10px; border-left:3px solid #2a6ef0; background:#eef3ff; margin-top:15px; }
+    .success-tick { display:none; font-size:40px; color:green; margin-top:10px; animation:pop 0.5s ease; }
+    @keyframes pop { from { transform:scale(0.5); opacity:0; } to { transform:scale(1); opacity:1; } }
+    .input { width:100%; padding:8px; margin:5px 0; border:1px solid #ccc; border-radius:6px; }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand"><img src="logo.png" alt=""><h1>HelpHaath</h1></div>
-      <nav class="navlinks"><a href="index.html">Home</a><a href="service.html">Book Service</a><a href="worker.html">For Workers</a><a href="user.html" class="btn">My Profile</a></nav>
-    </div>
-  </header>
-
-  <main class="container" style="padding-top:28px">
-    <section class="card">
-      <h3>Pre-order / Reserve</h3>
-      <p class="smallmuted">Reserve upcoming items (eBooks, templates, workshops). We'll notify you when checkout is live.</p>
-
-      <div class="product-row" style="margin-top:12px">
-        <div class="product">
-          <h4>WorkWise eBook (Pre-launch)</h4>
-          <p class="smallmuted">Step-by-step systems, templates, checklists.</p>
-          <p style="margin-top:10px"><strong data-price-usd="6.5"></strong></p>
-          <form id="preorder-form">
-            <label for="pre-email">Email</label>
-            <input id="pre-email" class="input" type="email" required placeholder="you@domain.com"/>
-            <label for="pre-item">Item</label>
-            <select id="pre-item" class="input"><option>WorkWise eBook</option><option>Templates Pack</option><option>Workshop Seat</option></select>
-            <label for="pre-note">Note (optional)</label>
-            <textarea id="pre-note" class="input" rows="3" placeholder="What do you want from this product?"></textarea>
-            <button class="btn" type="submit">Reserve</button>
-          </form>
-        </div>
-
-        <div class="product">
-          <h4>Why reserve?</h4>
-          <div class="smallmuted">Early buyers get discounted pricing, first access to templates, and invites to special Q&A sessions.</div>
-          <div style="margin-top:12px">
-            <h4>Reserved list</h4>
-            <div id="reserved-list" style="margin-top:8px"></div>
-          </div>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand">
+        <img src="logo.png" alt="HelpHaath" onerror="this.style.display='none'"/>
+        <div>
+          <div style="font-weight:800">HelpHaath</div>
+          <div class="small-muted">Work Wise • Files Founder</div>
         </div>
       </div>
+      <nav style="display:flex;gap:10px;align-items:center">
+        <a class="btn-ghost" href="user.html">Profile</a>
+        <a class="btn" href="user.html">My Account</a>
+      </nav>
+    </header>
+
+    <!-- HERO: eBook product -->
+    <section class="hero">
+      <div class="card hero-left">
+        <div class="small-muted">E-BOOK · DIGITAL PRODUCT</div>
+        <h1>WorkWise — From Zero to Booked</h1>
+        <p class="lead">A practical 10-step system to get booked, get paid, and scale your services. Templates, trackers & scripts included.</p>
+
+        <div class="row" style="align-items:flex-start;display:flex;gap:20px">
+          <div style="flex:1">
+            <ul class="small">
+              <li>Step-by-step system to find paying customers</li>
+              <li>Scripts & templates that convert</li>
+              <li>Simple daily tracker & checklist included</li>
+            </ul>
+            <div style="margin-top:12px">
+              <button class="btn" id="btn-preorder">Pre-Order Now</button>
+              <button class="btn-ghost" id="btn-wishlist">Add to Wishlist</button>
+              <div id="wishlist-tick" class="success-tick">✔</div>
+            </div>
+          </div>
+
+          <div style="width:240px;text-align:right">
+            <div class="price" id="price-display" data-price-usd="19">Loading price...</div>
+            <div class="small-muted">One-time purchase</div>
+
+            <div style="margin-top:12px">
+              <div id="paypal-button-container"></div>
+            </div>
+            <button class="btn-ghost" style="margin-top:8px" id="btn-test-pay">Test Payment</button>
+          </div>
+        </div>
+
+        <div id="preorder-success" class="success-tick">✔ Pre-order Confirmed!</div>
+        <div class="notice"><strong>Note:</strong> Payments are in sandbox for now. Replace PayPal Client ID for real sales.</div>
+      </div>
+
+      <aside class="card hero-right">
+        <h3>Product details</h3>
+        <p class="small-muted">Description</p>
+        <p class="small">This eBook includes the WorkWise 10-step method, daily tracker template, outreach scripts, and pre-book playbooks designed for fast monetization.</p>
+
+        <div style="height:10px"></div>
+        <label class="small-muted">Currency</label>
+        <select id="currency-select" class="input">
+          <option value="AUTO">Auto detect</option>
+          <option value="USD">USD $</option>
+          <option value="INR">INR ₹</option>
+          <option value="EUR">EUR €</option>
+          <option value="JPY">JPY ¥</option>
+        </select>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Quick FAQ</div>
+        <div class="small">
+          <strong>Delivery:</strong> Instant download link after payment (demo).<br/>
+          <strong>Refund:</strong> 7-day refund policy (demo).<br/>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Contact</div>
+        <input id="contact-name" class="input" placeholder="Your name" />
+        <input id="contact-email" class="input" placeholder="Your email" />
+        <textarea id="contact-msg" class="input" rows="3" placeholder="Your message"></textarea>
+        <button id="contact-send" class="btn">Send Message</button>
+      </aside>
     </section>
 
-    <footer class="footer">© HelpHaath 2025</footer>
-  </main>
+    <!-- ABOUT -->
+    <section class="card">
+      <h3>About Files Founder</h3>
+      <p class="small">Files Founder supports creators & solo founders to build personal brands, sell digital products, and scale globally. The WorkWise system is our first practical guide for action — built to get results fast.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      © 2025 HelpHaath · WorkWise • <a href="user.html" style="color:inherit">My Account</a>
+    </footer>
+  </div>
+
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
 
   <script>
-    // show reserved list
-    function renderReservedList(){
-      const pre = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
-      const el = document.getElementById('reserved-list');
-      el && (el.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${p.country} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No reservations yet</div>');
+    // --- Currency Detection ---
+    const prices = { USD:19, INR:1599, EUR:17, JPY:2100 };
+    function detectCurrency() {
+      let userLang = navigator.language || navigator.userLanguage;
+      if (userLang.includes("en-IN")) return "INR";
+      if (userLang.includes("ja")) return "JPY";
+      if (userLang.includes("de") || userLang.includes("fr")) return "EUR";
+      return "USD";
     }
-    document.addEventListener('DOMContentLoaded', renderReservedList);
-  </script>
+    function updatePrice(curr) {
+      let currency = curr==="AUTO" ? detectCurrency() : curr;
+      document.getElementById("price-display").innerText =
+        currency + " " + (prices[currency] || prices.USD);
+    }
+    document.getElementById("currency-select").addEventListener("change", e=>updatePrice(e.target.value));
+    updatePrice("AUTO");
 
-  <script src="script.js"></script>
+    // --- Wishlist Animation ---
+    document.getElementById("btn-wishlist").addEventListener("click", ()=>{
+      document.getElementById("wishlist-tick").style.display="block";
+    });
+
+    // --- Preorder Confirmation ---
+    document.getElementById("btn-preorder").addEventListener("click", ()=>{
+      document.getElementById("preorder-success").style.display="block";
+    });
+
+    // --- Test Payment Simulation ---
+    document.getElementById("btn-test-pay").addEventListener("click", ()=>{
+      alert("✅ Payment simulated! (Sandbox demo)");
+    });
+  </script>
 </body>
 </html>

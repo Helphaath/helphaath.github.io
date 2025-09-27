@@ -2,121 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>HelpHaath — Profile</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My Profile — HelpHaath</title>
-  <link rel="icon" href="logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand"><img src="logo.png" alt=""><h1>HelpHaath</h1></div>
-      <nav class="navlinks"><a href="index.html">Home</a><a href="service.html">Book Service</a><a href="worker.html">For Workers</a><a href="user.html" class="btn">My Profile</a></nav>
-    </div>
-  </header>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <img src="logo.png" alt="HelpHaath" onerror="this.style.display='none'"/>
+        <div>
+          <div style="font-weight:800">HelpHaath</div>
+          <div class="small-muted">Profile & Purchases</div>
+        </div>
+      </div>
+      <nav>
+        <a class="btn-ghost" href="index.html">Back</a>
+      </nav>
+    </header>
 
-  <main class="container" style="padding-top:28px">
-    <section class="card">
-      <h3>My Profile</h3>
-      <p class="smallmuted">This is a local demo profile — saved in your browser. We'll replace with secure auth later.</p>
-
-      <div class="profile-panel" style="margin-top:12px">
-        <div class="avatar" id="profile-avatar">GH</div>
-        <div class="profile-meta">
-          <div id="profile-name">Guest</div>
-          <div id="profile-role" class="smallmuted">Not signed in</div>
-          <div class="stat-row">
-            <div class="stat" id="profile-bookings">Bookings: 0</div>
-            <div class="stat" id="profile-completed">Completed: 0</div>
-            <div class="stat" id="profile-earnings">Earnings: -</div>
+    <main>
+      <section class="card grid-2">
+        <div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div id="profile-avatar" class="avatar">GH</div>
+            <div>
+              <div id="profile-name-display" style="font-weight:800">Guest</div>
+              <div id="profile-country-display" class="small-muted">No country</div>
+            </div>
           </div>
 
           <div style="margin-top:12px">
-            <label class="smallmuted">Upload profile photo (demo)</label>
-            <input id="upload-photo" type="file" accept="image/*" class="input" />
-            <button class="btn" id="btn-save-profile">Save Profile</button>
-            <button class="btn-ghost" id="btn-signin-demo">Sign In (Demo)</button>
-            <button class="btn-ghost" id="btn-signout-demo" style="display:none">Sign Out</button>
+            <label>Name</label>
+            <input id="profile-name" class="input" placeholder="Your name" />
+            <label>Country</label>
+            <input id="profile-country" class="input" placeholder="Country (e.g., India)" />
+            <label>Date of Birth</label>
+            <input id="profile-dob" type="date" class="input" />
+            <label>Profile Photo (demo)</label>
+            <input id="profile-photo" type="file" accept="image/*" class="input" />
+            <div style="display:flex;gap:8px">
+              <button id="save-profile" class="btn">Save Profile</button>
+              <button id="clear-profile" class="btn-ghost">Clear</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div style="margin-top:14px">
-        <h4>Order History</h4>
-        <div id="orders-list" style="margin-top:8px"></div>
-      </div>
+        <div>
+          <div class="card" style="margin-bottom:12px">
+            <h4>Wishlist</h4>
+            <div id="wishlist-area" class="card-scroll small-muted" style="padding:8px"></div>
+          </div>
 
-      <div style="margin-top:12px">
-        <h4>Wishlist</h4>
-        <div id="wishlist-list" style="margin-top:8px"></div>
-      </div>
+          <div class="card" style="margin-bottom:12px">
+            <h4>Orders</h4>
+            <div id="orders-area" class="card-scroll small-muted" style="padding:8px"></div>
+          </div>
 
-      <div style="margin-top:12px">
-        <h4>Pre-orders</h4>
-        <div id="preorders-list" style="margin-top:8px"></div>
-      </div>
-    </section>
+          <div class="card">
+            <h4>Daily Tracker</h4>
+            <div>
+              <label class="small-muted">Add task for today</label>
+              <input id="tracker-input" class="input" placeholder="Write a task (e.g., Write chapter 1)" />
+              <div style="display:flex;gap:8px"><button id="add-task" class="btn">Add Task</button></div>
+              <div style="height:8px"></div>
+              <div id="tracker-list" class="card-scroll" style="max-height:180px;padding:8px"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <footer class="footer">
-      <div>© HelpHaath 2025</div>
-    </footer>
-  </main>
-
-  <script>
-    // small inline helper for user page (photo, save, render preorders)
-    function renderProfileExtrasLocal(){ 
-      // orders & wishlist & preorders handled by script.js functions
-      const orders = JSON.parse(localStorage.getItem('hh_bookings')||'[]');
-      const el = document.getElementById('orders-list');
-      el && (el.innerHTML = orders.length ? orders.map(o=>`<div class="act">${o.workerName} • ${o.date} • ${o.status} • ${hh.formatPrice(o.priceUSD)}</div>`).join('') : '<div class="act">No orders yet</div>');
-      const wish = JSON.parse(localStorage.getItem('hh_wishlist')||'[]');
-      const wEl = document.getElementById('wishlist-list');
-      if(wEl){ 
-        if(!wish || wish.length===0) wEl.innerHTML = '<div class="act">No wishlist items</div>';
-        else {
-          const items = wish.map(id => {
-            const wk = (window.workers||[]).find(x=>x.id===id);
-            if(!wk) return '';
-            return `<div class="act">${wk.name} — ${wk.skill} — ${hh.formatPrice(wk.priceUSD)}</div>`;
-          }).join('');
-          wEl.innerHTML = items;
-        }
-      }
-      const pre = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
-      const pEl = document.getElementById('preorders-list');
-      pEl && (pEl.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No preorders</div>');
-    }
-
-    document.addEventListener('DOMContentLoaded', ()=>{
-      renderProfileExtrasLocal();
-    });
-
-    document.getElementById('upload-photo') && document.getElementById('upload-photo').addEventListener('change', function(e){
-      const f = e.target.files[0];
-      if(!f) return;
-      const reader = new FileReader();
-      reader.onload = function(ev){
-        const user = JSON.parse(localStorage.getItem('hh_user')||'null') || {name:'Guest',role:'Visitor'};
-        user.photo = ev.target.result;
-        localStorage.setItem('hh_user', JSON.stringify(user));
-        alert('Photo saved in demo profile (browser only)');
-        location.reload();
-      }
-      reader.readAsDataURL(f);
-    });
-
-    document.getElementById('btn-save-profile') && document.getElementById('btn-save-profile').addEventListener('click', ()=>{
-      const user = JSON.parse(localStorage.getItem('hh_user')||'null');
-      if(!user){ alert('Sign in first (Demo)'); return; }
-      const name = prompt('Update name', user.name || 'User');
-      if(!name) return;
-      user.name = name;
-      localStorage.setItem('hh_user', JSON.stringify(user));
-      alert('Profile saved locally (demo)');
-      location.reload();
-    });
-  </script>
+      <footer class="footer">© 2025 HelpHaath</footer>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>

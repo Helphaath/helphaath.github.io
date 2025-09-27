@@ -1,289 +1,319 @@
-/* script.js - HelpHaath frontend logic
-   - currency detection & conversion (placeholder rates)
-   - preorders (localStorage)
-   - demo profile (localStorage)
-   - worker directory, search & booking (localStorage)
-   - wishlist, orders, profile rendering
-   Comments show where to replace with real backend integrations.
+/* script.js - HelpHaath front-end logic (profiles, wishlist, orders, currency, tracker, payments)
+   - All data stored locally in browser localStorage for demo / testing.
+   - Replace PayPal client id in index.html to test real sandbox payments.
+   - For Stripe: you need a server endpoint (not included here). Use Test Payment to simulate.
 */
 
-(() => {
-  // ---------- CONFIG ----------
-  const currencyMap = {
-    'US': {code:'USD', symbol:'$', rate:1},
-    'IN': {code:'INR', symbol:'₹', rate:82},
-    'JP': {code:'JPY', symbol:'¥', rate:150},
-    'KR': {code:'KRW', symbol:'₩', rate:1350},
-    'GB': {code:'GBP', symbol:'£', rate:0.79},
-    'EU': {code:'EUR', symbol:'€', rate:0.92},
-    'DEFAULT': {code:'USD', symbol:'$', rate:1}
+/* ---------- Helpers ---------- */
+function $(s){ return document.querySelector(s); }
+function $all(s){ return Array.from(document.querySelectorAll(s)); }
+function getLS(k, fallback){ try { return JSON.parse(localStorage.getItem(k) || JSON.stringify(fallback)); } catch(e){ return fallback; } }
+function setLS(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+function nowISO(){ return new Date().toISOString(); }
+
+/* ---------- CONFIG ---------- */
+const PRICE_USD = 19;
+const BUNDLE_USD = 99;
+const RATES = { USD:1, INR:82, EUR:0.92, JPY:150, KRW:1350 };
+let forcedCurrency = getLS('hh_currency') || 'AUTO';
+
+/* ---------- CURRENCY DETECTION & RENDERING ---------- */
+function detectCurrency(){
+  const lang = (navigator.language || navigator.userLanguage || 'en-US').toUpperCase();
+  if(lang.includes('IN')) return 'INR';
+  if(lang.includes('JP')) return 'JPY';
+  if(lang.includes('KO')||lang.includes('KR')) return 'KRW';
+  if(lang.includes('DE')||lang.includes('FR')||lang.includes('ES')) return 'EUR';
+  if(lang.includes('GB')||lang.includes('EN')) return 'USD';
+  return 'USD';
+}
+function currentCurrency(){ return (forcedCurrency && forcedCurrency !== 'AUTO') ? forcedCurrency : detectCurrency(); }
+function formatLocal(usd){
+  const cur = currentCurrency();
+  const rate = RATES[cur] || 1;
+  const val = Math.round((usd * rate + Number.EPSILON) * 100) / 100;
+  if(cur === 'JPY' || cur === 'KRW') return `${cur} ${Math.round(val)}`;
+  return `${cur} ${val}`;
+}
+function renderPrices(){
+  $all('[data-price-usd]').forEach(el=>{
+    const usd = parseFloat(el.getAttribute('data-price-usd')) || PRICE_USD;
+    el.textContent = formatLocal(usd);
+  });
+  const pd = $('#price-display');
+  if(pd) pd.textContent = formatLocal(PRICE_USD);
+  const cs = $('#currency-select');
+  if(cs) cs.value = forcedCurrency || 'AUTO';
+}
+
+/* ---------- PROFILE (local) ---------- */
+function getProfile(){ return getLS('hh_user', null); }
+function saveProfile(profile){ setLS('hh_user', profile); renderProfileUI(); }
+function clearProfile(){
+  localStorage.removeItem('hh_user');
+  renderProfileUI();
+}
+function renderProfileUI(){
+  const u = getProfile();
+  if(u){
+    $('#profile-name-display') && ($('#profile-name-display').textContent = u.name || 'Guest');
+    $('#profile-country-display') && ($('#profile-country-display').textContent = u.country || '');
+    $('#profile-name') && ($('#profile-name').value = u.name || '');
+    $('#profile-country') && ($('#profile-country').value = u.country || '');
+    $('#profile-dob') && ($('#profile-dob').value = u.dob || '');
+    $('#profile-avatar') && ($('#profile-avatar').innerHTML = u.photo ? `<img src="${u.photo}" style="width:84px;height:84px;border-radius:10px;object-fit:cover">` : (u.name ? u.name.split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase() : 'GH'));
+  } else {
+    $('#profile-name-display') && ($('#profile-name-display').textContent = 'Guest');
+    $('#profile-country-display') && ($('#profile-country-display').textContent = 'No country');
+    $('#profile-name') && ($('#profile-name').value = '');
+    $('#profile-country') && ($('#profile-country').value = '');
+    $('#profile-dob') && ($('#profile-dob').value = '');
+    $('#profile-avatar') && ($('#profile-avatar').innerHTML = 'GH');
+  }
+}
+
+/* Save profile from form */
+function handleSaveProfile(){
+  const name = $('#profile-name') ? $('#profile-name').value.trim() : '';
+  const country = $('#profile-country') ? $('#profile-country').value.trim() : '';
+  const dob = $('#profile-dob') ? $('#profile-dob').value : '';
+  const u = getProfile() || {};
+  u.name = name || u.name || 'Guest';
+  u.country = country || u.country || '';
+  u.dob = dob || u.dob || '';
+  u.updatedAt = nowISO();
+  setLS('hh_user', u);
+  alert('Profile saved (demo).');
+  renderProfileUI();
+}
+
+/* Photo upload */
+function handleProfilePhoto(fileInput){
+  const f = fileInput.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const u = getProfile() || {};
+    u.photo = ev.target.result; // base64 data URL
+    setLS('hh_user', u);
+    alert('Photo saved (demo).');
+    renderProfileUI();
   };
-  const BASE_PRICE_USD = 6.5; // example base for eBook
+  reader.readAsDataURL(f);
+}
 
-  // ---------- UTILITIES ----------
-  function detectCountryCode(){
-    const lang = (navigator.language || navigator.userLanguage || 'en-US').toUpperCase();
-    if(lang.includes('IN')) return 'IN';
-    if(lang.includes('JP')) return 'JP';
-    if(lang.includes('KO') || lang.includes('KR')) return 'KR';
-    if(lang.includes('GB')) return 'GB';
-    if(lang.includes('DE') || lang.includes('FR') || lang.includes('ES')) return 'EU';
-    if(lang.includes('US')) return 'US';
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if(tz.includes('Asia/Kolkata')) return 'IN';
-      if(tz.includes('Asia/Tokyo')) return 'JP';
-      if(tz.includes('Asia/Seoul')) return 'KR';
-    } catch(e){}
-    return 'DEFAULT';
-  }
-  const country = detectCountryCode();
-  const currency = currencyMap[country] || currencyMap['DEFAULT'];
+/* ---------- WISHLIST ---------- */
+function getWishlist(){ return getLS('hh_wishlist', []); }
+function addToWishlist(id){
+  const list = getWishlist();
+  if(!list.includes(id)) list.push(id);
+  setLS('hh_wishlist', list);
+  renderWishlistUI();
+  alert('Added to wishlist (demo).');
+}
+function removeFromWishlist(id){
+  let list = getWishlist(); list = list.filter(x=>x!==id); setLS('hh_wishlist', list); renderWishlistUI();
+}
+function renderWishlistUI(){
+  const area = $('#wishlist-area');
+  if(!area) return;
+  const items = getWishlist();
+  if(items.length === 0){ area.innerHTML = '<div class="small-muted">No items in wishlist</div>'; return; }
+  area.innerHTML = items.map(it => `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0">${it}<div><button data-buy="${it}" class="btn-ghost">Buy</button><button data-remove="${it}" class="btn-ghost">Remove</button></div></div>`).join('');
+  area.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click', e=> removeFromWishlist(e.currentTarget.getAttribute('data-remove'))));
+  area.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click', e=> {
+    const id = e.currentTarget.getAttribute('data-buy');
+    simulatePayment(id);
+  }));
+}
 
-  function localPrice(usd){
-    return Math.round((usd * currency.rate + Number.EPSILON) * 100) / 100;
-  }
-  function formatPrice(usd){
-    const price = localPrice(usd);
-    if(currency.code==='JPY' || currency.code==='KRW') return `${currency.symbol}${Math.round(price)}`;
-    return `${currency.symbol}${price}`;
-  }
+/* ---------- ORDERS ---------- */
+function getOrders(){ return getLS('hh_orders', []); }
+function saveOrder(order){
+  const list = getOrders();
+  list.unshift(order);
+  setLS('hh_orders', list);
+  renderOrdersUI();
+}
+function renderOrdersUI(){
+  const area = $('#orders-area');
+  if(!area) return;
+  const list = getOrders();
+  if(list.length === 0){ area.innerHTML = '<div class="small-muted">No orders yet</div>'; return; }
+  area.innerHTML = list.map(o => `<div style="padding:8px;border-bottom:1px solid rgba(255,255,255,0.02)">${o.items.map(i=>i.title).join(', ')} • ${o.amount_display || (o.currency+' '+o.amount_usd)} • ${new Date(o.createdAt).toLocaleString()}</div>`).join('');
+}
 
-  // update all price placeholders
-  function renderPrices(){
-    document.querySelectorAll('[data-price-usd]').forEach(el=>{
-      const usd = parseFloat(el.getAttribute('data-price-usd')) || BASE_PRICE_USD;
-      el.textContent = formatPrice(usd);
-    });
-    const note = document.getElementById('currency-note');
-    if(note) note.textContent = `Prices shown in ${currency.code}`;
-  }
+/* ---------- DAILY TRACKER ---------- */
+function getTracker(){ return getLS('hh_tracker', {}); }
+function saveTracker(t){ setLS('hh_tracker', t); renderTrackerUI(); }
+function addTaskToday(title){
+  if(!title) return;
+  const date = (new Date()).toISOString().slice(0,10);
+  const t = getTracker();
+  t[date] = t[date] || {tasks:[], notes:''};
+  t[date].tasks.unshift({id:'t'+Date.now(), title, done:false});
+  saveTracker(t);
+}
+function toggleTask(date, taskId){
+  const t = getTracker();
+  if(!t[date]) return;
+  t[date].tasks = t[date].tasks.map(tsk => tsk.id===taskId ? {...tsk, done: !tsk.done} : tsk);
+  saveTracker(t);
+}
+function renderTrackerUI(){
+  const area = $('#tracker-list');
+  if(!area) return;
+  const date = (new Date()).toISOString().slice(0,10);
+  const t = getTracker();
+  const today = t[date] || {tasks:[], notes:''};
+  if(today.tasks.length === 0){ area.innerHTML = '<div class="small-muted">No tasks for today</div>'; return; }
+  area.innerHTML = today.tasks.map(tsk => `<div style="display:flex;align-items:center;gap:8px;padding:6px 0"><input type="checkbox" ${tsk.done ? 'checked' : ''} data-toggle="${tsk.id}" /> <div style="flex:1; text-decoration:${tsk.done ? 'line-through' : 'none'}">${tsk.title}</div></div>`).join('');
+  area.querySelectorAll('[data-toggle]').forEach(cb => cb.addEventListener('change', e => {
+    const id = e.currentTarget.getAttribute('data-toggle');
+    toggleTask(date, id);
+  }));
+}
 
-  // ---------- PRE-ORDER ----------
-  function reservePreorder(email, note){
-    const list = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
-    list.push({email, note, ts: new Date().toISOString(), country});
-    localStorage.setItem('hh_preorders', JSON.stringify(list));
-    return true;
-  }
+/* ---------- CONTACT (quick local capture) ---------- */
+function handleContact(){
+  const name = $('#contact-name') ? $('#contact-name').value.trim() : '';
+  const email = $('#contact-email') ? $('#contact-email').value.trim() : '';
+  const msg = $('#contact-msg') ? $('#contact-msg').value.trim() : '';
+  if(!email || !msg) return alert('Please provide email & message');
+  const list = getLS('hh_contacts', []);
+  list.unshift({name,email,msg,ts:nowISO()});
+  setLS('hh_contacts', list);
+  alert('Message saved. We will contact you (demo).');
+  $('#contact-name') && ($('#contact-name').value=''); $('#contact-email') && ($('#contact-email').value=''); $('#contact-msg') && ($('#contact-msg').value='');
+}
 
-  // ---------- DEMO PROFILE ----------
-  function getDemoUser(){ return JSON.parse(localStorage.getItem('hh_user')||'null'); }
-  function setDemoUser(user){ localStorage.setItem('hh_user', JSON.stringify(user)); renderProfilePanel(); }
-  function clearDemoUser(){ localStorage.removeItem('hh_user'); renderProfilePanel(); }
-
-  function renderProfilePanel(){
-    const user = getDemoUser();
-    const nameEl = document.getElementById('profile-name');
-    const roleEl = document.getElementById('profile-role');
-    const avatarEl = document.getElementById('profile-avatar');
-    const bookingsEl = document.getElementById('profile-bookings');
-    const completedEl = document.getElementById('profile-completed');
-    const earningsEl = document.getElementById('profile-earnings');
-    const activitiesEl = document.getElementById('profile-activities');
-
-    if(!nameEl) return; // not on pages where profile exists
-    if(!user){
-      nameEl.textContent='Guest';
-      roleEl.textContent='Not signed in';
-      avatarEl.textContent='GH';
-      bookingsEl.textContent='Bookings: 0';
-      completedEl.textContent='Completed: 0';
-      earningsEl.textContent='Earnings: -';
-      activitiesEl.innerHTML='<div class="act">No activities. Create demo profile.</div>';
-      document.getElementById('btn-signin-demo') && (document.getElementById('btn-signin-demo').style.display='inline-block');
-      document.getElementById('btn-signout-demo') && (document.getElementById('btn-signout-demo').style.display='none');
-      return;
-    }
-    nameEl.textContent = user.name || 'John Doe';
-    roleEl.textContent = user.role || 'Worker';
-    avatarEl.textContent = ((user.name||'User').split(' ').map(s=>s[0]).slice(0,2).join('')).toUpperCase();
-    bookingsEl.textContent = 'Bookings: ' + (user.bookings||0);
-    completedEl.textContent = 'Completed: ' + (user.completed||0);
-    earningsEl.textContent = 'Earnings: ' + (currency.symbol + (user.earnings || 0));
-    const acts = (user.activities||[]);
-    activitiesEl.innerHTML = acts.length ? acts.map(a=>`<div class="act">${a}</div>`).join('') : '<div class="act">No recent activity</div>';
-    document.getElementById('btn-signin-demo') && (document.getElementById('btn-signin-demo').style.display='none');
-    document.getElementById('btn-signout-demo') && (document.getElementById('btn-signout-demo').style.display='inline-block');
-  }
-
-  // ---------- WORKERS (demo data) ----------
-  const workers = [
-    {id:1,name:'Amit Kumar',skill:'Plumbing',city:'Delhi',rating:4.7,priceUSD:10},
-    {id:2,name:'Sana Park',skill:'Cleaning',city:'Seoul',rating:4.8,priceUSD:8},
-    {id:3,name:'Kenji Ito',skill:'Electrical',city:'Tokyo',rating:4.6,priceUSD:12},
-    {id:4,name:'Lara Singh',skill:'Carpentry',city:'Mumbai',rating:4.5,priceUSD:9},
-    {id:5,name:'Chris Lee',skill:'Cleaning',city:'NYC',rating:4.9,priceUSD:11}
-  ];
-
-  function renderWorkerList(list){
-    const el = document.getElementById('worker-list');
-    if(!el) return;
-    el.innerHTML = list.map(w=>`
-      <div class="worker card" data-id="${w.id}">
-        <h4>${w.name} <small style="color:var(--muted);font-weight:600">· ${w.city}</small></h4>
-        <div class="smallmuted">${w.skill} · ⭐ ${w.rating}</div>
-        <div style="margin-top:10px;font-weight:700">${formatPrice(w.priceUSD)}</div>
-        <div style="margin-top:8px">
-          <button class="btn" onclick="hh.bookWorker(${w.id})">Book</button>
-          <button class="btn-ghost" onclick="hh.saveWishlist(${w.id})">Save</button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  // booking flow
-  function bookWorker(id){
-    const w = workers.find(x=>x.id===id);
-    if(!w) return alert('Worker not found');
-    const name = prompt('Your name for booking');
-    if(!name) return;
-    const date = prompt('Preferred date (YYYY-MM-DD)', new Date().toISOString().slice(0,10));
-    if(!date) return;
-    const bookings = JSON.parse(localStorage.getItem('hh_bookings')||'[]');
-    const booking = {id:Date.now(), workerId:id, workerName:w.name, customer:name, date, status:'Pending', priceUSD:w.priceUSD, country};
-    bookings.push(booking);
-    localStorage.setItem('hh_bookings', JSON.stringify(bookings));
-    alert('Booking saved! Check your Profile → Orders.');
-    const user = getDemoUser();
-    if(user){
-      user.bookings = (user.bookings||0) + 1;
-      user.activities = user.activities || [];
-      user.activities.unshift(`Booking: ${w.skill} with ${w.name} on ${date}`);
-      setDemoUser(user);
-    }
-    renderBookingsDashboard();
-  }
-
-  function saveWishlist(id){
-    const saved = JSON.parse(localStorage.getItem('hh_wishlist')||'[]');
-    if(saved.includes(id)) return alert('Already saved');
-    saved.push(id);
-    localStorage.setItem('hh_wishlist', JSON.stringify(saved));
-    alert('Saved to wishlist');
-  }
-
-  function filterWorkers(){
-    const q = (document.getElementById('search-q')||{value:''}).value.toLowerCase();
-    const city = (document.getElementById('filter-city')||{value:''}).value.toLowerCase();
-    const skill = (document.getElementById('filter-skill')||{value:''}).value.toLowerCase();
-    const filtered = workers.filter(w=>{
-      if(q && !(w.name.toLowerCase().includes(q) || w.skill.toLowerCase().includes(q))) return false;
-      if(city && !w.city.toLowerCase().includes(city)) return false;
-      if(skill && !w.skill.toLowerCase().includes(skill)) return false;
-      return true;
-    });
-    renderWorkerList(filtered);
-  }
-
-  // expose some functions
-  window.hh = {
-    country, currency, formatPrice, localPrice, filterWorkers, renderPrices, renderWorkerList, renderProfilePanel, renderBookingsDashboard: renderBookingsDashboard, bookWorker, saveWishlist
-  };
-
-  // bookings rendering
-  function renderBookingsDashboard(){
-    const list = JSON.parse(localStorage.getItem('hh_bookings')||'[]');
-    const el = document.getElementById('orders-list');
-    if(!el) return;
-    if(list.length===0){ el.innerHTML = '<div class="act">No orders yet.</div>'; return; }
-    el.innerHTML = list.map(b=>`<div class="act"><strong>${b.workerName}</strong> — ${b.date} — ${b.status} — ${formatPrice(b.priceUSD)}</div>`).join('');
-  }
-
-  // profile extras for user.html
-  function renderProfileExtras(){
-    const orders = JSON.parse(localStorage.getItem('hh_bookings')||'[]');
-    const el = document.getElementById('orders-list');
-    el && (el.innerHTML = orders.length ? orders.map(o=>`<div class="act">${o.workerName} • ${o.date} • ${o.status} • ${formatPrice(o.priceUSD)}</div>`).join('') : '<div class="act">No orders yet</div>');
-
-    const wish = JSON.parse(localStorage.getItem('hh_wishlist')||'[]');
-    const wEl = document.getElementById('wishlist-list');
-    if(wEl){
-      if(!wish || wish.length===0) wEl.innerHTML = '<div class="act">No wishlist items</div>';
-      else {
-        const items = wish.map(id => {
-          const wk = workers.find(x=>x.id===id);
-          if(!wk) return '';
-          return `<div class="act">${wk.name} — ${wk.skill} — ${formatPrice(wk.priceUSD)}</div>`;
-        }).join('');
-        wEl.innerHTML = items;
-      }
-    }
-
-    const pre = JSON.parse(localStorage.getItem('hh_preorders')||'[]');
-    const pEl = document.getElementById('preorders-list');
-    pEl && (pEl.innerHTML = pre.length ? pre.map(p=>`<div class="act">${p.email} • ${new Date(p.ts).toLocaleString()}</div>`).join('') : '<div class="act">No preorders</div>');
-  }
-
-  // image upload demo
-  function handlePhotoUpload(fileInput){
-    const f = fileInput.files[0];
-    if(!f) return;
-    const reader = new FileReader();
-    reader.onload = function(ev){
-      const user = getDemoUser() || {name:'Guest', role:'Visitor'};
-      user.photo = ev.target.result;
-      localStorage.setItem('hh_user', JSON.stringify(user));
-      alert('Photo saved in demo profile (browser only)');
-      location.reload();
-    }
-    reader.readAsDataURL(f);
-  }
-
-  // ---------- UI init ----------
-  function initUI(){
-    renderPrices();
-    renderWorkerList(workers);
-    renderProfilePanel();
-    renderBookingsDashboard();
-    renderProfileExtras();
-
-    // pre-order form
-    const preform = document.getElementById('preorder-form');
-    if(preform) preform.addEventListener('submit', e=>{
-      e.preventDefault();
-      const email = document.getElementById('pre-email').value.trim();
-      const note = document.getElementById('pre-note').value.trim();
-      if(!email || !email.includes('@')) return alert('Enter a valid email');
-      reservePreorder(email,note);
-      alert('Reserved — we will notify you via email when checkout is available.');
-      preform.reset();
-      renderProfileExtras();
-    });
-
-    // demo signin/out
-    document.getElementById('btn-signin-demo') && document.getElementById('btn-signin-demo').addEventListener('click', ()=>{
-      const name = prompt('Enter name for demo profile') || 'Demo User';
-      const role = prompt('Role (Worker/Service Taker)', 'Worker') || 'Worker';
-      const demo = {name, role, bookings:0, completed:0, earnings:0, activities:[]};
-      setDemoUser(demo);
-      alert('Demo profile created locally (browser only).');
-    });
-    document.getElementById('btn-signout-demo') && document.getElementById('btn-signout-demo').addEventListener('click', ()=>{
-      clearDemoUser();
-      alert('Signed out demo profile.');
-    });
-
-    // global event: file upload input
-    const up = document.getElementById('upload-photo');
-    if(up) up.addEventListener('change', function(){ handlePhotoUpload(this); });
-
-    // smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const id = this.getAttribute('href').slice(1);
-        const t = document.getElementById(id);
-        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+/* ---------- PAYPAL (smart buttons) ---------- */
+function renderPayPalButton(){
+  if(!window.paypal) { console.warn('PayPal SDK not loaded (replace YOUR_PAYPAL_SANDBOX_CLIENT_ID in index.html)'); return; }
+  const priceUsd = PRICE_USD;
+  paypal.Buttons({
+    style: { shape:'rect', color:'blue', layout:'vertical', label:'paypal' },
+    createOrder: function(data, actions){
+      return actions.order.create({
+        purchase_units: [{
+          amount:{ value: priceUsd.toString() },
+          description: 'WorkWise eBook (Full)'
+        }]
       });
-    });
+    },
+    onApprove: function(data, actions){
+      return actions.order.capture().then(function(details){
+        // Save order locally
+        const order = {
+          id: data.orderID || ('order_'+Date.now()),
+          items: [{productId:'ebook_workwise', title:'WorkWise eBook', price_usd:PRICE_USD, qty:1}],
+          amount_usd: PRICE_USD,
+          amount_display: formatLocal(PRICE_USD),
+          currency: currentCurrency(),
+          paymentProvider: 'paypal',
+          paymentStatus: 'completed',
+          createdAt: new Date().toISOString()
+        };
+        saveOrder(order);
+        alert('Payment successful. Thank you ' + (details.payer && details.payer.name && details.payer.name.given_name ? details.payer.name.given_name : '') + '. Order saved (demo).');
+      });
+    },
+    onError: function(err){ console.error('PayPal error', err); alert('PayPal error'); }
+  }).render('#paypal-button-container');
+}
 
-    // currency demo: update anytime
-    window.addEventListener('currencyRefresh', renderPrices);
+/* ---------- TEST / SIMULATED PAYMENT ---------- */
+function simulatePayment(itemId='ebook_workwise'){
+  const amount_usd = (itemId === 'bundle' ? BUNDLE_USD : PRICE_USD);
+  const cur = currentCurrency();
+  const order = {
+    id: 'sim_' + Date.now(),
+    items: [{productId: itemId, title: itemId === 'bundle' ? 'WorkWise Premium' : 'WorkWise eBook', price_usd: amount_usd, qty:1}],
+    amount_usd,
+    amount_display: formatLocal(amount_usd),
+    currency: cur,
+    paymentProvider: 'simulated',
+    paymentStatus: 'completed',
+    createdAt: new Date().toISOString()
+  };
+  saveOrder(order);
+  alert('Simulated payment complete (demo). Order saved.');
+}
+
+/* ---------- INIT UI & EVENTS ---------- */
+function init(){
+  // Render currency/prices
+  renderPrices();
+
+  // Currency selector
+  const cs = $('#currency-select');
+  if(cs){
+    cs.addEventListener('change', (e)=> {
+      forcedCurrency = e.target.value;
+      setLS('hh_currency', forcedCurrency);
+      renderPrices();
+    });
   }
 
-  document.addEventListener('DOMContentLoaded', initUI);
+  // Wishlist button on index
+  $('#cta-wl') && $('#cta-wl').addEventListener('click', ()=> { addToWishlist('ebook_workwise'); });
 
-  // expose global for debug
-  window.hhDebug = {country, currency, formatPrice};
-})();
+  // Free mini guide CTA
+  $('#cta-free') && $('#cta-free').addEventListener('click', ()=>{
+    const email = prompt('Enter your email to receive the free mini guide (demo):');
+    if(!email || !email.includes('@')) return alert('Enter valid email');
+    const leads = getLS('hh_leads', []);
+    leads.unshift({email, ts:nowISO()});
+    setLS('hh_leads', leads);
+    alert('Free mini guide sent to your email (demo). Check your inbox — (demo).');
+  });
+
+  // Test pay
+  $('#btn-test-pay') && $('#btn-test-pay').addEventListener('click', ()=> simulatePayment('ebook_workwise'));
+
+  // Stripe button (placeholder)
+  $('#btn-stripe') && $('#btn-stripe').addEventListener('click', ()=> {
+    alert('Stripe Checkout requires a small server endpoint. See docs / I can provide full server code if you want.');
+  });
+
+  // Contact
+  $('#contact-send') && $('#contact-send').addEventListener('click', handleContact);
+
+  // Profile page events
+  $('#save-profile') && $('#save-profile').addEventListener('click', handleSaveProfile);
+  $('#clear-profile') && $('#clear-profile').addEventListener('click', ()=> { if(confirm('Clear profile?')){ clearProfile(); } });
+  $('#profile-photo') && $('#profile-photo').addEventListener('change', function(){ handleProfilePhoto(this); });
+
+  // Wishlist and orders UI on profile page
+  renderWishlistUI();
+  renderOrdersUI();
+
+  // Tracker
+  $('#add-task') && $('#add-task').addEventListener('click', ()=> {
+    const val = $('#tracker-input').value.trim();
+    if(!val) return alert('Add a task');
+    addTaskToday(val);
+    $('#tracker-input').value = '';
+  });
+  renderTrackerUI();
+
+  // Contact page saved contacts (no server)
+  // Render profile UI
+  renderProfileUI();
+
+  // Render PayPal button (if SDK loaded)
+  if(window.paypal) renderPayPalButton();
+  else console.warn('PayPal SDK not available. Add your client id script tag in index.html');
+
+  // Render wishlist/orders if on profile page
+  renderWishlistUI();
+  renderOrdersUI();
+}
+
+/* Fire init after DOM ready */
+document.addEventListener('DOMContentLoaded', init);
+
+/* Expose helpers for console debugging */
+window.hh = {
+  getProfile, saveProfile, getWishlist, addToWishlist, getOrders, simulatePayment, getTracker
+};

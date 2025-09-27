@@ -2,120 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <title>HelpHaath — WorkWise eBook</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HelpHaath — Work Wise. Live Proud.</title>
-  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
+  <div class="container">
+    <header class="header">
       <div class="brand">
-        <img src="logo.png" alt="HelpHaath logo">
-        <h1>HelpHaath</h1>
+        <img src="logo.png" alt="HelpHaath" onerror="this.style.display='none'"/>
+        <div>
+          <div style="font-weight:800">HelpHaath</div>
+          <div class="small-muted">Work Wise • Files Founder</div>
+        </div>
       </div>
-      <nav class="navlinks" aria-label="main">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#services">Services</a>
-        <a href="workwise.html">WorkWise</a>
-        <a href="service.html">Book Service</a>
-        <a href="worker.html">For Workers</a>
-        <a href="user.html" class="btn">My Profile</a>
+      <nav style="display:flex;gap:10px;align-items:center">
+        <a class="btn-ghost" href="user.html">Profile</a>
+        <a class="btn" href="user.html">My Account</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="container">
-    <section id="home" class="hero">
-      <div class="card">
-        <div class="eyebrow">Files Founder • HelpHaath</div>
-        <h2>Work Wise. Live Proud.</h2>
-        <p class="lead">Trusted local workers, global vision. Reserve services, pre-order our e-book and join the Files Founder community.</p>
-        <div class="hero-actions">
-          <button class="btn" onclick="location.href='service.html'">I am a Service Taker</button>
-          <button class="btn-ghost" onclick="location.href='worker.html'">I am a Worker</button>
-        </div>
+    <!-- HERO: eBook product -->
+    <section class="hero" id="home">
+      <div class="card hero-left">
+        <div class="small-muted">E-BOOK · DIGITAL PRODUCT</div>
+        <h1>WorkWise — From Zero to Booked</h1>
+        <p class="lead">A practical 10-step system to get booked, get paid, and scale your services. Templates, time-blocks, message scripts & pre-book systems included.</p>
 
-        <div class="features" style="margin-top:18px">
-          <div class="feature"><h4>Fast Booking</h4><div class="smallmuted">Find & book verified workers in minutes.</div></div>
-          <div class="feature"><h4>WorkWise System</h4><div class="smallmuted">Pre-order our eBook and get templates + checklists.</div></div>
-          <div class="feature"><h4>Global Ready</h4><div class="smallmuted">Currency auto-detect for international visitors.</div></div>
-        </div>
-      </div>
-
-      <div>
-        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%">
-          <div style="width:220px;height:140px;border-radius:12px;background:linear-gradient(180deg,#184b80,#1367b1);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">
-            WORK WISE
+        <div class="row" style="align-items:flex-start">
+          <div style="flex:1">
+            <ul class="small">
+              <li>Step-by-step system to find paying customers</li>
+              <li>Scripts & templates that convert</li>
+              <li>Simple daily tracker & checklist included</li>
+            </ul>
+            <div style="margin-top:12px">
+              <button class="btn" id="cta-free">Get Free Mini Guide (Email)</button>
+              <button class="btn-ghost" id="cta-wl">Add to Wishlist</button>
+            </div>
           </div>
-          <p class="smallmuted" style="margin-top:12px" id="currency-note">Prices shown in USD</p>
-          <div style="margin-top:12px">
-            <button class="btn" onclick="document.getElementById('pre-email').focus()">Pre-order WorkWise <span style="font-weight:600;margin-left:8px" data-price-usd="6.5"></span></button>
+
+          <div style="width:240px;text-align:right">
+            <div class="price" id="price-display" data-price-usd="19">Loading price...</div>
+            <div class="small-muted">One-time purchase</div>
+
+            <div style="margin-top:12px">
+              <!-- PayPal smart button container -->
+              <div id="paypal-button-container"></div>
+            </div>
+
+            <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+              <button class="btn-ghost" id="btn-test-pay">Test Payment</button>
+              <button class="btn" id="btn-stripe">Stripe (Server req)</button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="services" class="card" style="margin-top:18px">
-      <h3>Services</h3>
-      <p class="smallmuted">Core categories — more will be added. Filter & book workers on the Book Service page.</p>
-      <div class="services-grid" style="margin-top:12px">
-        <div class="service"><div class="icon">PL</div><h4>Plumbing</h4><div class="smallmuted">Fix leaks, installs & emergency repairs.</div></div>
-        <div class="service"><div class="icon">CL</div><h4>Cleaning</h4><div class="smallmuted">Home & office deep cleaning.</div></div>
-        <div class="service"><div class="icon">EL</div><h4>Electrical</h4><div class="smallmuted">Wiring, installs & troubleshooting.</div></div>
-        <div class="service"><div class="icon">CP</div><h4>Carpentry</h4><div class="smallmuted">Furniture, fittings & custom work.</div></div>
-      </div>
-    </section>
-
-    <section id="prebook" class="card" style="margin-top:18px">
-      <h3>Pre-book / Pre-order</h3>
-      <p class="smallmuted">Reserve upcoming eBooks, events, templates, and product kits. We'll notify you when launch checkout is live.</p>
-
-      <div class="product-row">
-        <div class="product">
-          <h4>WorkWise eBook (Pre-launch)</h4>
-          <div class="smallmuted">A compact system to work smarter, prioritize ROI and automate small tasks.</div>
-          <p style="margin-top:10px"><strong data-price-usd="6.5"></strong></p>
-          <form id="preorder-form">
-            <label for="pre-email">Email</label>
-            <input id="pre-email" class="input" type="email" required placeholder="you@domain.com"/>
-            <label for="pre-note">Note (what you want from the book)</label>
-            <input id="pre-note" class="input" placeholder="I want templates for scheduling..."/>
-            <button class="btn" type="submit">Reserve My Copy</button>
-          </form>
-        </div>
-
-        <div class="product">
-          <h4>WorkWise Templates Pack</h4>
-          <div class="smallmuted">Editable checklists, time-block templates & automation playbook.</div>
-          <p style="margin-top:10px"><strong data-price-usd="3.5"></strong></p>
-          <div style="margin-top:12px"><button class="btn-ghost" onclick="alert('Coming soon — reserved via pre-order form')">Notify me</button></div>
+        <div style="margin-top:14px" class="notice">
+          <strong>Note:</strong> Use PayPal Sandbox for safe testing. If you don't have PayPal keys yet, use "Test Payment" to simulate a purchase. Replace the PayPal client ID in the script tag when ready.
         </div>
       </div>
+
+      <aside class="card hero-right">
+        <h3>Product details</h3>
+        <p class="small-muted">Description</p>
+        <p class="small">This eBook includes the WorkWise 10-step method, templates, a daily tracker template, outreach scripts, and pre-book playbooks designed for fast monetization.</p>
+
+        <div style="height:10px"></div>
+        <div>
+          <label class="small-muted">Currency</label>
+          <select id="currency-select" class="input">
+            <option value="AUTO">Auto detect</option>
+            <option value="USD">USD $</option>
+            <option value="INR">INR ₹</option>
+            <option value="EUR">EUR €</option>
+            <option value="JPY">JPY ¥</option>
+          </select>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Quick FAQ</div>
+        <div class="small" style="margin-top:8px">
+          <strong>Delivery:</strong> Instant download link after payment (demo).<br/>
+          <strong>Refund:</strong> 7-day refund policy (manual for demo).<br/>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Contact</div>
+        <div style="margin-top:6px">
+          <input id="contact-name" class="input" placeholder="Your name" />
+          <input id="contact-email" class="input" placeholder="Your email" />
+          <textarea id="contact-msg" class="input" rows="3" placeholder="Your message"></textarea>
+          <button id="contact-send" class="btn">Send Message</button>
+        </div>
+      </aside>
     </section>
 
-    <section id="testimonials" class="card" style="margin-top:18px">
-      <h3>What early users say</h3>
-      <div class="testi">
-        <div class="test-card">“Clear templates — saved me hours.” — A user</div>
-        <div class="test-card">“WorkWise changed how I plan my day.” — B user</div>
-        <div class="test-card">“HelpHaath worker came fast and professional.” — C user</div>
-      </div>
-    </section>
-
-    <section id="follow" class="card" style="margin-top:18px">
-      <h3>Stay connected</h3>
-      <p class="smallmuted">Instagram: <a href="https://www.instagram.com/helphaath/" target="_blank">@helphaath</a></p>
+    <!-- About / Files Founder mission -->
+    <section style="margin-top:18px" class="card">
+      <h3>About Files Founder</h3>
+      <p class="small">Files Founder supports creators & solo founders to build personal brands, sell digital products, and scale globally. The WorkWise system is our first practical guide for action — built to get results fast.</p>
     </section>
 
     <footer class="footer">
-      <div class="container">
-        <div>© HelpHaath 2025 • Work Wise • Files Founder</div>
-      </div>
+      © 2025 HelpHaath · WorkWise • <a href="user.html" style="color:inherit">My Account</a>
     </footer>
-  </main>
+  </div>
 
+  <!-- PayPal SDK: replace YOUR_PAYPAL_SANDBOX_CLIENT_ID with your sandbox client id -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
+
+  <!-- Main script -->
   <script src="script.js"></script>
 </body>
 </html>

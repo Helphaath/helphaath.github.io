@@ -2,36 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>User Profile — HelpHaath</title>
+  <title>HelpHaath — Profile & Orders</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <h2>My Account</h2>
-      <a class="btn-ghost" href="index.html">← Back</a>
+      <div class="brand">
+        <img src="logo.png" alt="logo" onerror="this.style.display='none'">
+        <div>
+          <div style="font-weight:800">HelpHaath</div>
+          <div class="small-muted">Profile · Orders · Wishlist</div>
+        </div>
+      </div>
+      <nav>
+        <a class="btn-ghost" href="index.html">Home</a>
+      </nav>
     </header>
 
-    <section class="card">
-      <h3>Profile</h3>
-      <input id="profile-name" class="input" placeholder="Full Name"/>
-      <input id="profile-country" class="input" placeholder="Country"/>
-      <input id="profile-dob" class="input" type="date"/>
-      <input id="profile-pic" type="file" accept="image/*"/>
-      <button class="btn" id="save-profile">Save Profile</button>
-      <div id="profile-preview" class="small"></div>
-    </section>
+    <main>
+      <section class="card grid-2">
+        <div>
+          <div style="display:flex;gap:12px;align-items:center">
+            <div id="profile-avatar" class="avatar">GH</div>
+            <div>
+              <div id="profile-name-display" style="font-weight:800">Guest</div>
+              <div id="profile-country-display" class="small-muted">No country</div>
+            </div>
+          </div>
 
-    <section class="card">
-      <h3>My Wishlist</h3>
-      <ul id="wishlist-list"></ul>
-    </section>
+          <div style="margin-top:12px;">
+            <label>Name</label>
+            <input id="profile-name" class="input" placeholder="Your full name" />
+            <label>Country</label>
+            <input id="profile-country" class="input" placeholder="Country" />
+            <label>Date of birth</label>
+            <input id="profile-dob" type="date" class="input" />
+            <label>Profile photo (demo)</label>
+            <input id="profile-photo" type="file" accept="image/*" class="input" />
+            <div style="display:flex;gap:8px">
+              <button id="save-profile" class="btn">Save Profile</button>
+              <button id="clear-profile" class="btn-ghost">Clear</button>
+            </div>
+          </div>
+        </div>
 
-    <section class="card">
-      <h3>My Orders</h3>
-      <ul id="orders-list"></ul>
-    </section>
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <h4>Wishlist</h4>
+            <div id="wishlist-area" class="card-scroll small-muted" style="padding:8px;"></div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;">
+            <h4>Orders</h4>
+            <div id="orders-area" class="card-scroll small-muted" style="padding:8px;"></div>
+          </div>
+
+          <div class="card">
+            <h4>Daily Tracker (simple)</h4>
+            <div>
+              <label class="small-muted">Add a task for today</label>
+              <input id="tracker-input" class="input" placeholder="e.g., Post reel about tip #1" />
+              <div style="display:flex;gap:8px"><button id="add-task" class="btn">Add Task</button></div>
+              <div style="height:8px"></div>
+              <div id="tracker-list" class="card-scroll" style="max-height:180px;padding:8px;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">© 2025 HelpHaath</footer>
+    </main>
   </div>
 
   <script src="script.js"></script>

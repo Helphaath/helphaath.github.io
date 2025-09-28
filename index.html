@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>HelpHaath — WorkWise eBook</title>
+  <title>HelpHaath — WorkWise (E-Book)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" />
@@ -10,57 +10,141 @@
 </head>
 <body>
   <div class="container">
+
+    <!-- HEADER -->
     <header class="header">
       <div class="brand">
-        <img src="logo.png" alt="HelpHaath" onerror="this.style.display='none'"/>
+        <!-- logo.png should be in repo root. Replace with your brand image. -->
+        <img src="logo.png" alt="HelpHaath logo" onerror="this.style.display='none'">
         <div>
           <div style="font-weight:800">HelpHaath</div>
           <div class="small-muted">Work Wise • Files Founder</div>
         </div>
       </div>
+
       <nav style="display:flex;gap:10px;align-items:center">
         <a class="btn-ghost" href="user.html">Profile</a>
+        <a class="btn" href="#home">Buy eBook</a>
       </nav>
     </header>
 
-    <!-- HERO: eBook product -->
-    <section class="hero">
+    <!-- HERO: MAIN PRODUCT -->
+    <section class="hero" id="home">
+      <!-- LEFT: Product info, CTA, wishlist, pre-order -->
       <div class="card hero-left">
-        <div class="small-muted">E-BOOK · DIGITAL PRODUCT</div>
+        <div class="kicker">E-BOOK · DIGITAL PRODUCT</div>
         <h1>WorkWise — From Zero to Booked</h1>
-        <p class="lead">A practical 10-step system to get booked, get paid, and scale your services.</p>
+        <p class="lead">A practical, action-oriented 10-step system to book clients, earn faster, and scale your services. Templates, time-blocks, outreach scripts & a daily tracker included.</p>
 
-        <ul class="small">
-          <li>Step-by-step system to find paying customers</li>
-          <li>Scripts & templates that convert</li>
-          <li>Daily tracker & checklist included</li>
-        </ul>
+        <!-- Feature bullets -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="flex:1; min-width:220px;">
+            <ul class="small">
+              <li>Proven outreach templates that convert</li>
+              <li>Daily tracker + 90-day execution plan</li>
+              <li>Pre-book playbooks for early customers</li>
+            </ul>
+          </div>
 
-        <div class="actions">
-          <button class="btn" id="cta-wl">Add to Wishlist</button>
-          <button class="btn-ghost" id="btn-test-pay">Test Payment</button>
+          <!-- CTA column -->
+          <div style="width:260px;text-align:right;">
+            <!-- Price will be injected by JS based on currency -->
+            <div id="price-display" class="price" data-price-usd="19">Loading price...</div>
+            <div class="small-muted">One-time purchase</div>
+
+            <!-- Payment & actions -->
+            <div style="margin-top:12px">
+              <!-- PayPal Smart Button (renders here when SDK loaded and clientId set) -->
+              <div id="paypal-button-container"></div>
+            </div>
+
+            <div style="margin-top:10px; display:flex; gap:8px; justify-content:flex-end;">
+              <button id="btn-test-pay" class="btn-ghost">Test Payment</button>
+              <button id="btn-preorder" class="btn">Pre-order</button>
+            </div>
+
+            <!-- wishlist small action -->
+            <div style="margin-top:8px; display:flex; align-items:center; justify-content:flex-end; gap:8px;">
+              <button id="btn-wishlist" class="btn-ghost">Add to Wishlist</button>
+              <div id="wl-tick" class="success-tick" aria-hidden="true">
+                <!-- simple SVG tick -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2">
+                  <circle cx="12" cy="12" r="10" stroke-opacity="0.12"></circle>
+                  <path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <div class="small-muted">Saved</div>
+              </div>
+            </div>
+
+            <!-- Pre-order confirmation -->
+            <div id="preorder-confirm" class="success-tick" aria-hidden="true" style="margin-top:12px; justify-content:flex-end;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2"><path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <div style="font-weight:700">Pre-order confirmed</div>
+                <div class="small-muted">You will receive an email when product launches (demo).</div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="price-box">
-          <div class="price" id="price-display" data-price-usd="19">Loading price...</div>
-          <div class="small-muted">One-time purchase</div>
-          <div id="paypal-button-container"></div>
+        <div style="margin-top:14px" class="notice">
+          <strong>Note:</strong> Use PayPal Sandbox for testing. Replace the PayPal client ID (script tag below) with your Sandbox or Live Client ID to enable real payments. If you don't want to integrate now, use "Test Payment".
         </div>
       </div>
+
+      <!-- RIGHT: details, currency, contact -->
+      <aside class="card hero-right">
+        <h3>Product details</h3>
+        <p class="small-muted">What’s inside</p>
+        <p class="small">Detailed chapters, scripts ready to use, templates you can copy-paste, and a daily tracker template to implement the system quickly.</p>
+
+        <div style="height:12px"></div>
+
+        <label class="small-muted">Currency</label>
+        <select id="currency-select" class="input">
+          <option value="AUTO">Auto detect</option>
+          <option value="USD">USD $</option>
+          <option value="INR">INR ₹</option>
+          <option value="EUR">EUR €</option>
+          <option value="JPY">JPY ¥</option>
+        </select>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Quick FAQ</div>
+        <div class="small" style="margin-top:8px">
+          <strong>Delivery:</strong> Instant download after payment (demo).<br/>
+          <strong>Refund:</strong> 7-day refund window (manual in demo).<br/>
+        </div>
+
+        <div style="height:12px"></div>
+        <div class="small-muted">Contact</div>
+        <input id="contact-name" class="input" placeholder="Your name"/>
+        <input id="contact-email" class="input" placeholder="Your email"/>
+        <textarea id="contact-msg" class="input" placeholder="Message (questions about product)"></textarea>
+        <button id="contact-send" class="btn">Send Message</button>
+      </aside>
     </section>
 
-    <section class="card">
+    <!-- ABOUT -->
+    <section class="card" style="margin-top:18px;">
       <h3>About Files Founder</h3>
-      <p class="small">Files Founder helps creators & solo founders build brands, sell digital products, and scale globally. WorkWise is our first guide to help you get results fast.</p>
+      <p class="small">Files Founder helps creators & solo founders build personal brands, sell digital products, and scale globally. The WorkWise system is our flagship framework for structured execution.</p>
     </section>
 
     <footer class="footer">
-      © 2025 HelpHaath · WorkWise
+      © 2025 HelpHaath • Work Wise • Built for creators
     </footer>
   </div>
 
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
+  <!-- ============== PayPal SDK ==============
+       Replace YOUR_PAYPAL_SANDBOX_CLIENT_ID below with the client id you get from:
+       https://developer.paypal.com -> My Apps & Credentials -> Sandbox -> Create App -> Client ID
+       For Live, replace with Live client id.
+  -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD" id="paypal-sdk"></script>
+
+  <!-- Main script (all logic) -->
   <script src="script.js"></script>
 </body>
 </html>

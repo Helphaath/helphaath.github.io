@@ -2,149 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>HelpHaath — WorkWise (E-Book)</title>
+  <title>HelpHaath — WorkWise (E-Book) | Files Founder</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Meta for trust -->
+  <meta name="description" content="WorkWise — a practical 10-step system to get booked, get paid, and scale your services. HelpHaath by Files Founder." />
 </head>
 <body>
-  <div class="container">
+  <div class="site-wrap">
 
-    <!-- HEADER -->
-    <header class="header">
+    <!-- NAVBAR -->
+    <header class="site-header">
       <div class="brand">
-        <!-- logo.png should be in repo root. Replace with your brand image. -->
-        <img src="logo.png" alt="HelpHaath logo" onerror="this.style.display='none'">
-        <div>
-          <div style="font-weight:800">HelpHaath</div>
-          <div class="small-muted">Work Wise • Files Founder</div>
+        <img src="logo.png" alt="HelpHaath logo" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <div class="brand-title">HelpHaath</div>
+          <div class="brand-sub">Work Wise · Files Founder</div>
         </div>
       </div>
 
-      <nav style="display:flex;gap:10px;align-items:center">
-        <a class="btn-ghost" href="user.html">Profile</a>
-        <a class="btn" href="#home">Buy eBook</a>
+      <nav class="site-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="user.html" class="nav-cta">My Account</a>
       </nav>
     </header>
 
-    <!-- HERO: MAIN PRODUCT -->
-    <section class="hero" id="home">
-      <!-- LEFT: Product info, CTA, wishlist, pre-order -->
-      <div class="card hero-left">
+    <!-- HERO -->
+    <main class="hero">
+      <section class="hero-left card">
         <div class="kicker">E-BOOK · DIGITAL PRODUCT</div>
-        <h1>WorkWise — From Zero to Booked</h1>
-        <p class="lead">A practical, action-oriented 10-step system to book clients, earn faster, and scale your services. Templates, time-blocks, outreach scripts & a daily tracker included.</p>
+        <h1 class="hero-title">WorkWise — From Zero to Booked</h1>
+        <p class="hero-lead">A practical 10-step system that helps creators and solo founders find paying customers, organize their day, and scale with templates, scripts and a tracker.</p>
 
-        <!-- Feature bullets -->
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <div style="flex:1; min-width:220px;">
-            <ul class="small">
-              <li>Proven outreach templates that convert</li>
-              <li>Daily tracker + 90-day execution plan</li>
-              <li>Pre-book playbooks for early customers</li>
-            </ul>
+        <div class="features-grid">
+          <div class="feature">
+            <h4>Actionable templates</h4>
+            <p class="small">Scripts, messages & templates you can use to get replies and bookings.</p>
           </div>
+          <div class="feature">
+            <h4>90-day execution plan</h4>
+            <p class="small">Daily tasks and checklists to convert intention into results.</p>
+          </div>
+          <div class="feature">
+            <h4>Pre-book playbooks</h4>
+            <p class="small">How to secure early customers and deliver value fast.</p>
+          </div>
+        </div>
 
-          <!-- CTA column -->
-          <div style="width:260px;text-align:right;">
-            <!-- Price will be injected by JS based on currency -->
-            <div id="price-display" class="price" data-price-usd="19">Loading price...</div>
+        <div class="cta-row">
+          <button id="btn-preorder" class="btn btn-primary">Pre-order Now</button>
+          <button id="btn-free" class="btn btn-ghost">Get Free Mini Guide</button>
+          <button id="btn-wishlist" class="btn btn-ghost">Add to Wishlist</button>
+          <div id="wl-tick" class="tick success-tick" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2"><path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Saved</span>
+          </div>
+        </div>
+
+        <div class="trust-row">
+          <div class="trust-item">✔ Secure checkout</div>
+          <div class="trust-item">✔ 7-day refund policy</div>
+          <div class="trust-item">✔ Instant delivery (after payment)</div>
+        </div>
+
+        <div class="testimonial card small-muted">
+          <strong>What early users say</strong>
+          <p>"WorkWise gave me a clear first offer — I closed my first client in 7 days." — A. (Beta)</p>
+        </div>
+      </section>
+
+      <aside class="hero-right card">
+        <div class="product-card">
+          <img src="ebook.png" alt="WorkWise ebook cover" class="ebook-img" onerror="this.style.display='none'">
+          <div class="price-section">
+            <div id="price-display" data-price-usd="19" class="price-text">Loading price...</div>
             <div class="small-muted">One-time purchase</div>
+          </div>
 
-            <!-- Payment & actions -->
-            <div style="margin-top:12px">
-              <!-- PayPal Smart Button (renders here when SDK loaded and clientId set) -->
-              <div id="paypal-button-container"></div>
-            </div>
+          <!-- PayPal Smart Buttons will render here -->
+          <div id="paypal-button-container" style="margin-top:12px;"></div>
 
-            <div style="margin-top:10px; display:flex; gap:8px; justify-content:flex-end;">
-              <button id="btn-test-pay" class="btn-ghost">Test Payment</button>
-              <button id="btn-preorder" class="btn">Pre-order</button>
-            </div>
+          <div class="action-row" style="margin-top:12px;">
+            <button id="btn-simulate" class="btn btn-ghost">Simulate Payment</button>
+            <button id="btn-stripe" class="btn btn-ghost" title="Stripe requires small server">Stripe (Server)</button>
+          </div>
 
-            <!-- wishlist small action -->
-            <div style="margin-top:8px; display:flex; align-items:center; justify-content:flex-end; gap:8px;">
-              <button id="btn-wishlist" class="btn-ghost">Add to Wishlist</button>
-              <div id="wl-tick" class="success-tick" aria-hidden="true">
-                <!-- simple SVG tick -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" stroke-opacity="0.12"></circle>
-                  <path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <div class="small-muted">Saved</div>
-              </div>
-            </div>
+          <div style="margin-top:12px;">
+            <label class="small-muted">Currency</label>
+            <select id="currency-select" class="select">
+              <option value="AUTO">Auto detect</option>
+              <option value="USD">USD $</option>
+              <option value="INR">INR ₹</option>
+              <option value="EUR">EUR €</option>
+              <option value="JPY">JPY ¥</option>
+            </select>
+          </div>
 
-            <!-- Pre-order confirmation -->
-            <div id="preorder-confirm" class="success-tick" aria-hidden="true" style="margin-top:12px; justify-content:flex-end;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2"><path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <div>
-                <div style="font-weight:700">Pre-order confirmed</div>
-                <div class="small-muted">You will receive an email when product launches (demo).</div>
-              </div>
-            </div>
-
+          <div class="notice">
+            <strong>Note:</strong> To enable real PayPal checkout replace the PayPal Client ID in the script tag. For now you can test with simulated payment.
           </div>
         </div>
 
-        <div style="margin-top:14px" class="notice">
-          <strong>Note:</strong> Use PayPal Sandbox for testing. Replace the PayPal client ID (script tag below) with your Sandbox or Live Client ID to enable real payments. If you don't want to integrate now, use "Test Payment".
+        <div class="contact card" style="margin-top:14px;">
+          <h4>Contact & Support</h4>
+          <input id="contact-name" class="input" placeholder="Your name">
+          <input id="contact-email" class="input" placeholder="Your email">
+          <textarea id="contact-msg" class="input" rows="3" placeholder="Message or question"></textarea>
+          <button id="contact-send" class="btn btn-primary">Send Message</button>
+          <div id="contact-feedback" class="small-muted"></div>
         </div>
-      </div>
-
-      <!-- RIGHT: details, currency, contact -->
-      <aside class="card hero-right">
-        <h3>Product details</h3>
-        <p class="small-muted">What’s inside</p>
-        <p class="small">Detailed chapters, scripts ready to use, templates you can copy-paste, and a daily tracker template to implement the system quickly.</p>
-
-        <div style="height:12px"></div>
-
-        <label class="small-muted">Currency</label>
-        <select id="currency-select" class="input">
-          <option value="AUTO">Auto detect</option>
-          <option value="USD">USD $</option>
-          <option value="INR">INR ₹</option>
-          <option value="EUR">EUR €</option>
-          <option value="JPY">JPY ¥</option>
-        </select>
-
-        <div style="height:12px"></div>
-        <div class="small-muted">Quick FAQ</div>
-        <div class="small" style="margin-top:8px">
-          <strong>Delivery:</strong> Instant download after payment (demo).<br/>
-          <strong>Refund:</strong> 7-day refund window (manual in demo).<br/>
-        </div>
-
-        <div style="height:12px"></div>
-        <div class="small-muted">Contact</div>
-        <input id="contact-name" class="input" placeholder="Your name"/>
-        <input id="contact-email" class="input" placeholder="Your email"/>
-        <textarea id="contact-msg" class="input" placeholder="Message (questions about product)"></textarea>
-        <button id="contact-send" class="btn">Send Message</button>
       </aside>
+    </main>
+
+    <!-- ABOUT BLURB -->
+    <section class="about card">
+      <h3>Files Founder — Purpose & Promise</h3>
+      <p class="small">Files Founder (HelpHaath) helps creators and solo founders execute. We create simple proven systems so small teams and solo founders can get paying customers fast — with dignity, discipline, and clarity. This product is crafted to convert your daily effort into measurable results.</p>
+      <ul class="small">
+        <li>Guided steps — not theory</li>
+        <li>Templates and checklists — use them</li>
+        <li>Support & community — early access for pre-orders</li>
+      </ul>
     </section>
 
-    <!-- ABOUT -->
-    <section class="card" style="margin-top:18px;">
-      <h3>About Files Founder</h3>
-      <p class="small">Files Founder helps creators & solo founders build personal brands, sell digital products, and scale globally. The WorkWise system is our flagship framework for structured execution.</p>
-    </section>
-
-    <footer class="footer">
-      © 2025 HelpHaath • Work Wise • Built for creators
+    <footer class="site-footer">
+      <div>© 2025 HelpHaath · Files Founder</div>
+      <div class="small-muted">Privacy · Refund · Terms</div>
     </footer>
   </div>
 
-  <!-- ============== PayPal SDK ==============
-       Replace YOUR_PAYPAL_SANDBOX_CLIENT_ID below with the client id you get from:
-       https://developer.paypal.com -> My Apps & Credentials -> Sandbox -> Create App -> Client ID
-       For Live, replace with Live client id.
-  -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD" id="paypal-sdk"></script>
+  <!-- 3rd party SDKs -->
+  <!-- PAYPAL: Replace with your PayPal sandbox or live client id -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
 
-  <!-- Main script (all logic) -->
+  <!-- Firebase SDKs (App + Firestore + Auth + Messaging if needed) -->
+  <!-- Replace config in script.js with your Firebase project config -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <!-- EmailJS (client-side email notifications) -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <!-- Main client logic -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,99 +1,279 @@
-/* style.css — HelpHaath professional theme
-   Long, commented, and ready for production front-end.
-   Customize colors, fonts and spacing to match brand later.
-*/
-
-/* ---------- Root / Typography ---------- */
-:root{
-  --bg-1:#071227; --bg-2:#041229;
-  --card: rgba(255,255,255,0.03);
-  --accent:#2f7ff3; --accent-2:#13b89a;
-  --muted:#9fb3c8; --text:#eaf4ff;
-  --radius:12px; --shadow: 0 10px 30px rgba(3,10,18,0.55);
-  --maxw:1100px;
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+/* =============== Global Reset =============== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);}
-a{color:inherit;text-decoration:none}
+html {
+  scroll-behavior: smooth;
+}
 
-/* Wrapper */
-.site-wrap{max-width:var(--maxw);margin:0 auto;padding:18px}
+body {
+  font-family: "Montserrat", system-ui, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Header */
-.site-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0}
-.brand{display:flex;align-items:center;gap:12px}
-.brand-logo{width:48px;height:48px;border-radius:10px;object-fit:cover}
-.brand-title{font-weight:800}
-.brand-sub{font-size:12px;color:var(--muted)}
+/* Wrapper ensures max width and padding */
+.site-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-/* NAV */
-.site-nav{display:flex;gap:14px;align-items:center}
-.nav-link{color:var(--text);opacity:0.9}
-.nav-cta{background:linear-gradient(90deg,var(--accent),#69a8ff);padding:8px 12px;border-radius:9px;color:#fff}
+/* =============== Typography =============== */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.3;
+}
 
-/* Cards */
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:16px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.03);}
+h1.hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
 
-/* HERO */
-.hero{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start;margin-top:12px}
-@media(max-width:980px){ .hero{grid-template-columns:1fr} .site-nav{display:none} }
+p.hero-lead {
+  font-size: 1.1rem;
+  color: #d0d9e0;
+  margin-bottom: 1.25rem;
+}
 
-/* Hero left details */
-.kicker{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:0.6px;text-transform:uppercase}
-.hero-title{font-size:28px;margin:10px 0}
-.hero-lead{color:var(--muted);margin-bottom:14px}
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:760px){ .features-grid{grid-template-columns:1fr} }
-.feature h4{margin:0 0 4px}
-.feature p{margin:0;color:var(--muted);font-size:14px}
+.small {
+  font-size: 0.9rem;
+}
+.small-muted {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
 
-/* CTA */
-.cta-row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.btn{padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),#69a8ff);color:#fff;font-weight:700;cursor:pointer;transition:transform .12s ease}
-.btn:hover{transform:translateY(-3px)}
-.btn-ghost{padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text);cursor:pointer}
-.btn-primary{background:linear-gradient(90deg,var(--accent-2),#2bd7a3);color:#042028}
-.input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:var(--text);margin-top:8px}
-.select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:rgba(255,255,255,0.02);color:var(--text)}
-.small{font-size:14px;color:var(--muted)}
-.small-muted{color:var(--muted);font-size:13px}
+/* =============== Header & Nav =============== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-/* Right product card */
-.product-card{display:flex;flex-direction:column;align-items:center;gap:10px}
-.ebook-img{width:180px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.25)}
-.price-text{font-weight:800;font-size:20px}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
-/* trust / small */
-.trust-row{display:flex;gap:10px;margin-top:12px}
-.trust-item{background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;font-size:13px;color:var(--muted)}
+.brand-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
 
-/* success tick */
-.tick{display:none;align-items:center;gap:8px}
-.tick svg{width:36px;height:36px}
-.success-tick{display:flex;align-items:center;gap:8px}
-.success-tick.show{display:flex;animation:tick-pop .4s cubic-bezier(.2,.9,.2,1)}
-@keyframes tick-pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.brand-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.brand-sub {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
 
-/* About card */
-.about{margin-top:18px}
+.site-nav {
+  display: flex;
+  gap: 1rem;
+}
 
-/* Footer */
-.site-footer{margin-top:18px;padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+.nav-link {
+  text-decoration: none;
+  color: #e5e7eb;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: #fff;
+}
 
-/* Dashboard */
-.container{max-width:var(--maxw);margin:0 auto;padding:8px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:760px){ .grid-2{grid-template-columns:1fr} }
-.avatar{width:84px;height:84px;border-radius:12px;background:linear-gradient(90deg,#2b6fb8,#4b7bec);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px;color:#fff}
+.nav-cta {
+  padding: 0.4rem 0.9rem;
+  background: #13b89a;
+  color: #fff !important;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.25s;
+}
+.nav-cta:hover {
+  background: #0fa383;
+}
 
-/* scroll */
-.card-scroll{max-height:300px;overflow:auto;padding-right:6px}
+/* =============== Layout =============== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 2rem;
+  padding: 2rem 0;
+}
 
-/* Utilities */
-.center{text-align:center}
-.kicker{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:0.6px;text-transform:uppercase}
-.h3{font-size:18px;font-weight:800}
-.lead{color:var(--muted)}
-.notice{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);color:var(--muted)}
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.feature h4 {
+  font-size: 1rem;
+  color: #13b89a;
+}
+.feature p {
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.trust-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.trust-item {
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.08);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* =============== Buttons =============== */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: transform 0.2s, background 0.25s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: #13b89a;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #0fa383;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* =============== Forms & Inputs =============== */
+.input, .select, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.input:focus, .select:focus, textarea:focus {
+  outline: 2px solid #13b89a;
+  background: rgba(255,255,255,0.1);
+}
+
+/* =============== Tick & Status =============== */
+.success-tick {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.success-tick svg {
+  height: 18px;
+  width: 18px;
+}
+.success-tick.show {
+  opacity: 1;
+}
+
+/* =============== Product Card =============== */
+.ebook-img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-bottom: 0.8rem;
+}
+
+.price-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+/* =============== Notices =============== */
+.notice {
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.08);
+  border-radius: 6px;
+}
+
+/* =============== Footer =============== */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* =============== Responsive =============== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .site-nav {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

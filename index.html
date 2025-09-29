@@ -4,18 +4,27 @@
   <meta charset="utf-8" />
   <title>HelpHaath — WorkWise (E-Book) | Files Founder</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" href="logo.png" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="WorkWise — a practical 10-step system to get booked, get paid, and scale your services. HelpHaath by Files Founder.">
+  <link rel="icon" href="logo.png">
+
+  <!-- External stylesheet: style.css (I'll send this next) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Meta for trust -->
-  <meta name="description" content="WorkWise — a practical 10-step system to get booked, get paid, and scale your services. HelpHaath by Files Founder." />
+
+  <!-- Helpful SEO / social tags (you can update images later) -->
+  <meta property="og:title" content="HelpHaath — WorkWise (E-Book)">
+  <meta property="og:description" content="WorkWise: 10-step system for solo founders to get booked and get paid.">
+  <meta property="og:image" content="ebook.png">
 </head>
 <body>
   <div class="site-wrap">
 
-    <!-- NAVBAR -->
+    <!-- ================= HEADER / NAV ================= -->
     <header class="site-header">
       <div class="brand">
+        <!-- Put your logo.png in the repo root to show it here; onerror hides if missing -->
         <img src="logo.png" alt="HelpHaath logo" class="brand-logo" onerror="this.style.display='none'">
         <div class="brand-text">
           <div class="brand-title">HelpHaath</div>
@@ -23,131 +32,165 @@
         </div>
       </div>
 
-      <nav class="site-nav">
+      <nav class="site-nav" aria-label="Main navigation">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
+        <a href="preorder.html" class="nav-link">Pre-order</a>
         <a href="user.html" class="nav-cta">My Account</a>
       </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
     <main class="hero">
-      <section class="hero-left card">
+      <!-- Left column: Value, social proof, CTAs -->
+      <section class="hero-left card" aria-labelledby="hero-title">
         <div class="kicker">E-BOOK · DIGITAL PRODUCT</div>
-        <h1 class="hero-title">WorkWise — From Zero to Booked</h1>
-        <p class="hero-lead">A practical 10-step system that helps creators and solo founders find paying customers, organize their day, and scale with templates, scripts and a tracker.</p>
+        <h1 id="hero-title" class="hero-title">WorkWise — From Zero to Booked</h1>
+        <p class="hero-lead">A practical, action-focused 10-step system to find clients, get paid, and scale your services. Templates, time-blocks, outreach scripts, and a daily tracker included.</p>
 
-        <div class="features-grid">
+        <div class="features-grid" aria-hidden="false">
           <div class="feature">
             <h4>Actionable templates</h4>
-            <p class="small">Scripts, messages & templates you can use to get replies and bookings.</p>
+            <p class="small">Copy-paste outreach & message scripts that start conversations and book clients.</p>
           </div>
           <div class="feature">
-            <h4>90-day execution plan</h4>
-            <p class="small">Daily tasks and checklists to convert intention into results.</p>
+            <h4>Daily tracker</h4>
+            <p class="small">A 90-day plan you can use every day — small daily actions that compound.</p>
           </div>
           <div class="feature">
-            <h4>Pre-book playbooks</h4>
-            <p class="small">How to secure early customers and deliver value fast.</p>
+            <h4>Pre-book playbook</h4>
+            <p class="small">How to collect early orders, validate offers, and secure customers before launch.</p>
           </div>
         </div>
 
-        <div class="cta-row">
-          <button id="btn-preorder" class="btn btn-primary">Pre-order Now</button>
-          <button id="btn-free" class="btn btn-ghost">Get Free Mini Guide</button>
-          <button id="btn-wishlist" class="btn btn-ghost">Add to Wishlist</button>
+        <!-- CTAs -->
+        <div class="cta-row" role="group" aria-label="Primary actions">
+          <button id="btn-preorder" class="btn btn-primary" title="Pre-order the WorkWise eBook">Pre-order Now</button>
+          <button id="btn-free" class="btn btn-ghost" title="Get a free mini guide by email">Get Free Mini Guide</button>
+          <button id="btn-wishlist" class="btn btn-ghost" title="Add to wishlist">Add to Wishlist</button>
+
+          <!-- subtle saved tick that appears on saving to wishlist -->
           <div id="wl-tick" class="tick success-tick" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="#13b89a" stroke-width="2"><path d="M6 12l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Saved</span>
+            <span class="small-muted">Saved</span>
           </div>
         </div>
 
-        <div class="trust-row">
+        <div class="trust-row" aria-hidden="true">
           <div class="trust-item">✔ Secure checkout</div>
           <div class="trust-item">✔ 7-day refund policy</div>
-          <div class="trust-item">✔ Instant delivery (after payment)</div>
+          <div class="trust-item">✔ Instant (secure) delivery</div>
         </div>
 
+        <!-- social proof / micro-testimonial -->
         <div class="testimonial card small-muted">
-          <strong>What early users say</strong>
-          <p>"WorkWise gave me a clear first offer — I closed my first client in 7 days." — A. (Beta)</p>
+          <strong>Early result</strong>
+          <p>"WorkWise helped me book my first client in 7 days." — R., Beta user</p>
         </div>
       </section>
 
-      <aside class="hero-right card">
-        <div class="product-card">
+      <!-- Right column: Product card, price, payment, contact -->
+      <aside class="hero-right card" aria-labelledby="product-heading">
+        <div class="product-card" role="region" aria-label="Product card">
+
+          <!-- book cover (optional) -->
           <img src="ebook.png" alt="WorkWise ebook cover" class="ebook-img" onerror="this.style.display='none'">
+
+          <!-- price display (JS will set based on currency) -->
           <div class="price-section">
             <div id="price-display" data-price-usd="19" class="price-text">Loading price...</div>
             <div class="small-muted">One-time purchase</div>
           </div>
 
-          <!-- PayPal Smart Buttons will render here -->
-          <div id="paypal-button-container" style="margin-top:12px;"></div>
+          <!-- PayPal Smart Buttons placeholder (rendered by script.js after SDK loads).
+               IMPORTANT: replace the client-id param in the PayPal SDK script tag (later in this file)
+               with your sandbox or live Client ID. -->
+          <div id="paypal-button-container" style="margin-top:12px"></div>
 
-          <div class="action-row" style="margin-top:12px;">
-            <button id="btn-simulate" class="btn btn-ghost">Simulate Payment</button>
-            <button id="btn-stripe" class="btn btn-ghost" title="Stripe requires small server">Stripe (Server)</button>
+          <!-- actions -->
+          <div class="action-row" style="margin-top:12px">
+            <button id="btn-simulate" class="btn btn-ghost">Simulate Payment (Demo)</button>
+            <button id="btn-stripe" class="btn btn-ghost" title="Stripe requires a server">Stripe (Server)</button>
           </div>
 
-          <div style="margin-top:12px;">
+          <!-- currency selector (user can override auto-detect) -->
+          <div style="margin-top:12px">
             <label class="small-muted">Currency</label>
-            <select id="currency-select" class="select">
+            <select id="currency-select" class="select" aria-label="Currency selector">
               <option value="AUTO">Auto detect</option>
               <option value="USD">USD $</option>
               <option value="INR">INR ₹</option>
               <option value="EUR">EUR €</option>
               <option value="JPY">JPY ¥</option>
+              <option value="KRW">KRW ₩</option>
             </select>
           </div>
 
-          <div class="notice">
-            <strong>Note:</strong> To enable real PayPal checkout replace the PayPal Client ID in the script tag. For now you can test with simulated payment.
+          <div class="notice" style="margin-top:12px">
+            <strong>Note:</strong> to enable live PayPal replace the client-id in the SDK script tag. The site has a simulated payment fallback for testing.
           </div>
         </div>
 
-        <div class="contact card" style="margin-top:14px;">
+        <!-- Contact form -->
+        <div class="contact card" style="margin-top:14px">
           <h4>Contact & Support</h4>
-          <input id="contact-name" class="input" placeholder="Your name">
-          <input id="contact-email" class="input" placeholder="Your email">
-          <textarea id="contact-msg" class="input" rows="3" placeholder="Message or question"></textarea>
+          <input id="contact-name" class="input" placeholder="Your name" aria-label="Your name">
+          <input id="contact-email" class="input" placeholder="Your email" aria-label="Your email">
+          <textarea id="contact-msg" class="input" rows="3" placeholder="Message or question" aria-label="Message"></textarea>
           <button id="contact-send" class="btn btn-primary">Send Message</button>
-          <div id="contact-feedback" class="small-muted"></div>
+          <div id="contact-feedback" class="small-muted" style="margin-top:8px"></div>
         </div>
       </aside>
     </main>
 
-    <!-- ABOUT BLURB -->
-    <section class="about card">
-      <h3>Files Founder — Purpose & Promise</h3>
-      <p class="small">Files Founder (HelpHaath) helps creators and solo founders execute. We create simple proven systems so small teams and solo founders can get paying customers fast — with dignity, discipline, and clarity. This product is crafted to convert your daily effort into measurable results.</p>
+    <!-- ================= ABOUT BLURB ================= -->
+    <section class="about card" aria-labelledby="about-heading" style="margin-top:16px">
+      <h3 id="about-heading">Files Founder — Purpose & Promise</h3>
+      <p class="small">Files Founder (HelpHaath) exists to help creators and solo founders turn effort into income. We focus on systems — clear, simple, and proven steps you can implement today. WorkWise is the first public tool in our series: a hands-on playbook, templates, and trackers to get you started.</p>
+
       <ul class="small">
         <li>Guided steps — not theory</li>
-        <li>Templates and checklists — use them</li>
-        <li>Support & community — early access for pre-orders</li>
+        <li>Tools you can use today</li>
+        <li>Community & support for early adopters</li>
       </ul>
     </section>
 
+    <!-- ================= FOOTER ================= -->
     <footer class="site-footer">
       <div>© 2025 HelpHaath · Files Founder</div>
       <div class="small-muted">Privacy · Refund · Terms</div>
     </footer>
   </div>
 
-  <!-- 3rd party SDKs -->
-  <!-- PAYPAL: Replace with your PayPal sandbox or live client id -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD"></script>
+  <!-- ================ Third-party SDKs & libs ================
 
-  <!-- Firebase SDKs (App + Firestore + Auth + Messaging if needed) -->
-  <!-- Replace config in script.js with your Firebase project config -->
+       PayPal SDK:
+         - Replace YOUR_PAYPAL_SANDBOX_CLIENT_ID with your Sandbox Client ID to test real PayPal sandbox purchases.
+         - When going live, replace with your Live Client ID.
+         - Example sandbox script src:
+           https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD
+
+       Firebase:
+         - We'll add firebase SDKs in script.js (so they can be initialized with your config).
+
+       EmailJS:
+         - We'll include emailjs usage in script.js for client-side notifications.
+
+       NOTE: No sensitive secrets (server keys) are stored in these files. For production-grade secure verification you will need server-side webhook verification for PayPal or Stripe (I will provide that code if you want later).
+  ========================================================== -->
+
+  <!-- PayPal SDK (placeholder) - REPLACE client-id with your sandbox or live id -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_SANDBOX_CLIENT_ID&currency=USD" id="paypal-sdk"></script>
+
+  <!-- Firebase compat libs (loaded before script.js so script.js can initialize them with your config) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
-  <!-- EmailJS (client-side email notifications) -->
+  <!-- EmailJS (for simple email notifications without backend) -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <!-- Main client logic -->
+  <!-- Main script (I will send script.js next). It wires payments, firestore, emailjs, UI -->
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
